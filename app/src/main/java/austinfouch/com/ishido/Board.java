@@ -9,6 +9,10 @@ import java.util.Vector;
 public class Board {
     private Vector<Vector<Tile>> tiles;
 
+    public Board() {
+        this.tiles = new Vector<Vector<Tile>>();
+    }
+
     public Board(Vector<Vector<Tile>> tiles) {
         this.tiles = tiles;
     }
@@ -19,5 +23,17 @@ public class Board {
 
     public void setTiles(Vector<Vector<Tile>> tiles) {
         this.tiles = tiles;
+    }
+
+    public void nullify() {
+
+        Vector<Tile> nullVector = new Vector<Tile>();
+        for (int j = 0; j < IshidoConstants.getMaxCols(); j++) {
+           nullVector.add(null);
+        }
+
+        for (int i = 0; i < IshidoConstants.getMaxRows(); i++) {
+            getTiles().set(i, nullVector);
+        }
     }
 }

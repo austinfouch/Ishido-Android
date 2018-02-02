@@ -8,28 +8,28 @@ package austinfouch.com.ishido;
  */
 
 public class Tile {
-    private int color;
-    private int symbol;
+    private IshidoColor color;
+    private IshidoSymbol symbol;
 
-    public Tile(int color, int symbol) {
+    public Tile(IshidoColor color, IshidoSymbol symbol) {
         this.color = color;
         this.symbol = symbol;
     }
 
-    public int getColor() {
+    public void setColor(IshidoColor color) {
+        this.color = color;
+    }
+
+    public void setSymbol(IshidoSymbol symbol) {
+        this.symbol = symbol;
+    }
+
+    public IshidoColor getColor() {
         return color;
     }
 
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public int getSymbol() {
+    public IshidoSymbol getSymbol() {
         return symbol;
-    }
-
-    public void setSymbol(int symbol) {
-        this.symbol = symbol;
     }
 
     public boolean isMatch(Tile t) {
