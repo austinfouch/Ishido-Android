@@ -1,5 +1,8 @@
 package austinfouch.com.ishido;
 
+import android.graphics.drawable.GradientDrawable;
+import android.widget.ImageButton;
+
 import java.util.Vector;
 
 /**

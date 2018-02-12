@@ -29,6 +29,10 @@ public class Deck {
         this.tiles = tiles;
     }
 
+    public void removeLastTile() { this.tiles.removeElementAt(this.tiles.size() - 1); }
+
+    public Tile lastTile() { return this.tiles.elementAt(this.tiles.size() - 1); }
+
     public void addTile(Tile t) {
         getTiles().add(t);
     }

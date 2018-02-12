@@ -42,4 +42,66 @@ public class Tile {
             return false;
         }
     }
+    /**************************************************************************
+     Function Name: getResourceID
+     Purpose:
+     Determine the resource image id that corresponds with the tile parameter
+     Paramaters:
+     t, the tile used to determine the correct resource image id
+     Return Value:
+     Integer value representing the resource image id that matched the tile
+     parameter
+     Assistance Received: None.
+     **************************************************************************/
+    public int getResourceID() {
+        String resIDStr = "";
+        switch(color) {
+            case WHITE:
+                resIDStr = "white_";
+                break;
+            case BLACK:
+                resIDStr = "black_";
+                break;
+            case BLUE:
+                resIDStr = "blue_";
+                break;
+            case GREEN:
+                resIDStr = "green_";
+                break;
+            case RED:
+                resIDStr = "red_";
+                break;
+            case YELLOW:
+                resIDStr = "yellow_";
+                break;
+            default:
+                break;
+        }
+
+        switch(symbol) {
+            case SYM_1:
+                resIDStr +=  "blank_tile";
+                break;
+            case SYM_2:
+                resIDStr += "blank_tile";
+                break;
+            case SYM_3:
+                resIDStr += "blank_tile";
+                break;
+            case SYM_4:
+                resIDStr += "blank_tile";
+                break;
+            case SYM_5:
+                resIDStr += "blank_tile";
+                break;
+            case SYM_6:
+                resIDStr += "blank_tile";
+                break;
+            default:
+                break;
+        }
+
+        int id = IshidoConstants.getResId(resIDStr, R.drawable.class);
+        return id;
+    }
 }

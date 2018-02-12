@@ -1,8 +1,6 @@
 package austinfouch.com.ishido;
 
-/**
- * Created by TheShadowMarble on 2/1/2018.
- */
+import java.lang.reflect.Field;
 
 public class IshidoConstants {
     private final static int MAX_DECK_SIZE = 72;
@@ -35,5 +33,16 @@ public class IshidoConstants {
     public static int getMaxSymbols() {
 
         return MAX_SYMBOLS;
+    }
+
+    public static int getResId(String resName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
