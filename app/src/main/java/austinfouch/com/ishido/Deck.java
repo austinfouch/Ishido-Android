@@ -10,7 +10,6 @@ import java.util.Vector;
 
 public class Deck {
 
-
     private Vector<Tile> tiles;
 
     public Vector<Tile> getTiles() {
@@ -38,8 +37,8 @@ public class Deck {
     }
 
     public void setup() {
-        // create 2 of each tile combo
-        for (int i = 0; i < IshidoConstants.getTileRecurrence(); i++) {
+        // create tiles
+        for (int i = 0; i < IshidoConstants.UNQ_TILE_COUNT; i++) {
             for (IshidoColor color : IshidoColor.values()) {
                 for (IshidoSymbol symbol : IshidoSymbol.values()) {
                     Tile t = new Tile(color, symbol);

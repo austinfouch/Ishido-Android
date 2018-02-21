@@ -3,40 +3,14 @@ package austinfouch.com.ishido;
 import java.lang.reflect.Field;
 
 public class IshidoConstants {
-    private final static int MAX_DECK_SIZE = 72;
-    private final static int MAX_ROWS = 7;
-    private final static int MAX_COLS = 11;
-    private final static int MAX_COLORS = 5;
-    private final static int MAX_SYMBOLS = 5;
-    private final static int TILE_RECURRENCE = 2;
-
-    public static int getMaxDeckSize() {
-        return MAX_DECK_SIZE;
-    }
-
-    public static int getMaxRows() {
-        return MAX_ROWS;
-    }
-
-    public static int getMaxCols() {
-        return MAX_COLS;
-    }
-
-    public static int getMaxColors() {
-        return MAX_COLORS;
-    }
-
-    public static int getTileRecurrence() {
-        return TILE_RECURRENCE;
-    }
-
-    public static int getMaxSymbols() {
-
-        return MAX_SYMBOLS;
-    }
+    public final static int DECK_SIZE = 72;
+    public final static int NUM_BOARD_ROWS = 8;
+    public final static int NUM_BOARD_COLS = 12;
+    public final static int NUM_COLORS = 6;
+    public final static int NUM_SYMBOLS = 6;
+    public final static int UNQ_TILE_COUNT = 2;
 
     public static int getResId(String resName, Class<?> c) {
-
         try {
             Field idField = c.getDeclaredField(resName);
             return idField.getInt(idField);
