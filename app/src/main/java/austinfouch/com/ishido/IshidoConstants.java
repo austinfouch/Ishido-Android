@@ -10,11 +10,15 @@ public class IshidoConstants {
     public final static int NUM_SYMBOLS = 6;
     public final static int UNQ_TILE_COUNT = 2;
 
-    public static int getResId(String resName, Class<?> c) {
-        try {
+    public static int getResId(String resName, Class<?> c)
+    {
+        try
+        {
             Field idField = c.getDeclaredField(resName);
             return idField.getInt(idField);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             return -1;
         }

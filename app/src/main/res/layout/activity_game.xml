@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity"
+    tools:layout_editor_absoluteY="73dp">
+
+    <FrameLayout
+        android:id="@+id/backgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wood">
+
+    </FrameLayout>
+
+    <TableLayout
+        android:id="@+id/boardLayout"
+        android:layout_width="454dp"
+        android:layout_height="301dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/panelLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:id="@+id/boardRow0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/tileView0A"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blue_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0B"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0C"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0D"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0E"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0F"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0G"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0H"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0I"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0J"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0K"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView0L"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/yellow_blank_tile" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/tileView1A"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1B"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1C"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1D"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1E"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1F"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1G"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1H"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1I"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1J"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1K"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView1L"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/tileView2A"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2B"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2C"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2D"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2E"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2F"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2G"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2H"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2I"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2J"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2K"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView2L"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/tileView3A"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3B"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3C"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3D"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3E"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3F"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/green_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3G"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3H"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3I"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3J"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3K"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView3L"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/tileView4A"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4B"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4C"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4D"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4E"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4F"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4G"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/white_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4H"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4I"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4J"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4K"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView4L"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/tileView5A"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5B"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5C"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5D"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5E"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5F"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5G"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5H"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5I"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5J"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5K"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView5L"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/tileView6A"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6B"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6C"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6D"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6E"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6F"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6G"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6H"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6I"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6J"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6K"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView6L"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/boardRow7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/tileView7A"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/red_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7B"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7C"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7D"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7E"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7F"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7G"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7H"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7I"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7J"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7K"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/blank_blank_tile" />
+
+            <ImageView
+                android:id="@+id/tileView7L"
+                android:layout_width="37.5dp"
+                android:layout_height="37.5dp"
+                android:padding="1dp"
+                app:srcCompat="@drawable/black_blank_tile" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/panelLayout"
+        android:layout_width="118dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#c36c6b6a"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/boardLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/currentTileView"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@android:color/transparent"
+            android:padding="2dp"
+            app:srcCompat="@drawable/yellow_blank_tile"
+            android:contentDescription="TODO" />
+
+        <LinearLayout
+            android:id="@+id/tileCountLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tileCountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tiles Left:" />
+
+            <TextView
+                android:id="@+id/tileCountView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="72" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scoreLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/playerScoreLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/playerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Player1:" />
+
+                <TextView
+                    android:id="@+id/scoreView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="100" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/playerScoreLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/playerLabel2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Player2:" />
+
+                <TextView
+                    android:id="@+id/scoreView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="50" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/activityView"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@android:color/transparent">
+
+            <LinearLayout
+                android:id="@+id/activityLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/testEntryView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="[Turn 0]: Welcome to Ishido!" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/buttonsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save" />
+
+            <Button
+                android:id="@+id/quitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quit" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

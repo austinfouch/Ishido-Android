@@ -24,16 +24,4 @@ public class Board {
     public void setTiles(Vector<Vector<Tile>> tiles) {
         this.tiles = tiles;
     }
-
-    public void nullify() {
-
-        Vector<Tile> nullVector = new Vector<Tile>();
-        for (int j = 0; j < IshidoConstants.getMaxCols(); j++) {
-           nullVector.add(null);
-        }
-
-        for (int i = 0; i < IshidoConstants.getMaxRows(); i++) {
-            getTiles().set(i, nullVector);
-        }
-    }
 }
