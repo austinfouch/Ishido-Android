@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class Launcher extends AppCompatActivity {
+public class Launcher extends AppCompatActivity
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -16,7 +17,8 @@ public class Launcher extends AppCompatActivity {
         setContentView(R.layout.activity_launcher);
     }
 
-    public void Play(View view) {
+    public void Play(View view)
+    {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }

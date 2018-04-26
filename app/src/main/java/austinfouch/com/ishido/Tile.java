@@ -7,7 +7,8 @@ package austinfouch.com.ishido;
  *      Tile class
  */
 
-public class Tile {
+public class Tile
+{
     private IshidoColor m_color;
     private IshidoSymbol m_symbol;
 
@@ -118,7 +119,7 @@ public class Tile {
                 10:26pm 1/29/2018
 
     */
-    public void setSymbol(IshidoSymbol a_symbol)
+    public void setSymbol(IshidoSymbol a_symbol) 
     {
         this.m_symbol = a_symbol;
     }
