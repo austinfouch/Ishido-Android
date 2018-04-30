@@ -12,6 +12,10 @@ public class Tile
     private IshidoColor m_color;
     private IshidoSymbol m_symbol;
 
+    public Tile()
+    {
+    }
+
     /*!
     Tile::Tile()
 
@@ -182,17 +186,9 @@ public class Tile
 
 
     /**************************************************************************
-     Function Name: getResourceID
-     Purpose:
-     Determine the resource image id that corresponds with the tile parameter
-     Paramaters:
-     t, the tile used to determine the correct resource image id
-     Return Value:
-     Integer value representing the resource image id that matched the tile
-     parameter
-     Assistance Received: None.
+     Function Name: getColorResourceID
      **************************************************************************/
-    public int getResourceID()
+    public int getColorResourceID()
     {
         String resIDStr = "";
         switch(this.m_color)
@@ -219,30 +215,42 @@ public class Tile
                 break;
         }
 
+        resIDStr += "blank_tile.png";
+        int id = IshidoConstants.getResId(resIDStr, R.drawable.class);
+        return id;
+    }
+
+    /**************************************************************************
+     Function Name: getSymbolResourceID
+     **************************************************************************/
+    public int getSymbolResourceID()
+    {
+        String resIDStr = "blank_";
         switch(this.m_symbol)
         {
-            case SYM_1:
-                resIDStr +=  "blank_tile";
+            case BOLT:
+                resIDStr = "bolt_";
                 break;
-            case SYM_2:
-                resIDStr += "blank_tile";
+            case CIRCLE:
+                resIDStr = "circle_";
                 break;
-            case SYM_3:
-                resIDStr += "blank_tile";
+            case CROSS:
+                resIDStr = "cross_";
                 break;
-            case SYM_4:
-                resIDStr += "blank_tile";
+            case HEART:
+                resIDStr = "heart_";
                 break;
-            case SYM_5:
-                resIDStr += "blank_tile";
+            case MOON:
+                resIDStr = "moon_";
                 break;
-            case SYM_6:
-                resIDStr += "blank_tile";
+            case STAR:
+                resIDStr = "star_";
                 break;
             default:
                 break;
         }
 
+        resIDStr += "tile.png";
         int id = IshidoConstants.getResId(resIDStr, R.drawable.class);
         return id;
     }

@@ -1,11 +1,14 @@
 package austinfouch.com.ishido;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.ImageView;
 
 public class TileView
 {
     private Tile m_tileModel;
-    private View m_tileView;
+    private ImageView m_tileView;
 
     public Tile getTileModel()
     {
@@ -22,19 +25,23 @@ public class TileView
         return this.m_tileView;
     }
 
-    public void setTileView(View a_tileView)
+    public void setTileView(ImageView a_tileView)
     {
         this.m_tileView = a_tileView;
     }
 
-    public TileView(Tile a_tileModel, View a_tileView)
+    public TileView(Tile a_tileModel, ImageView a_tileView)
     {
         this.m_tileModel = a_tileModel;
         this.m_tileView = a_tileView;
     }
 
-    public void draw()
+    public void draw(Context a_context)
     {
-        this.m_tileView.setBackgroundResource(this.m_tileModel.getResourceID());
+        Drawable a_color = a_context.getResources().getDrawable(this.m_tileModel.getColorResourceID());
+        Drawable a_symbol = a_context.getResources().getDrawable(this.m_tileModel.getSymbolResourceID());
+
+        this.m_tileView.setBackground(a_color);
+        this.m_tileView.setForeground(a_symbol);
     }
 }

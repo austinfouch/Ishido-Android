@@ -1,9 +1,5 @@
 package austinfouch.com.ishido;
 
-/**
- * Created by TheShadowMarble on 1/30/2018.
- */
-
 public class Player
 {
     private int m_score;
@@ -11,12 +7,10 @@ public class Player
 
     public void help()
     {
-
     }
 
     public void play()
     {
-
     }
 
     public int getScore()

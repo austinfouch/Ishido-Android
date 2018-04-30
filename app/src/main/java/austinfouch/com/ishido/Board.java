@@ -2,31 +2,27 @@ package austinfouch.com.ishido;
 
 import java.util.Vector;
 
-/**
- * Created by TheShadowMarble on 1/30/2018.
- */
-
 public class Board
 {
-    private Vector<Vector<Tile>> tiles;
+    private Vector<Vector<Tile>> m_tiles;
 
     public Board()
     {
-        this.tiles = new Vector<Vector<Tile>>();
+        this.m_tiles = new Vector<Vector<Tile>>();
     }
 
-    public Board(Vector<Vector<Tile>> tiles)
+    public Board(Vector<Vector<Tile>> a_tiles)
     {
-        this.tiles = tiles;
+        this.m_tiles = a_tiles;
     }
 
     public Vector<Vector<Tile>> getTiles()
     {
-        return tiles;
+        return m_tiles;
     }
 
-    public void setTiles(Vector<Vector<Tile>> tiles)
+    public void setTiles(Vector<Vector<Tile>> a_tiles)
     {
-        this.tiles = tiles;
+        this.m_tiles = a_tiles;
     }
 }
