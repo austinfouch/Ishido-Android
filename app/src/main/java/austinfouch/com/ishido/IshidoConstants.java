@@ -2,6 +2,7 @@ package austinfouch.com.ishido;
 
 import java.lang.reflect.Field;
 
+// TODO: DOC
 public class IshidoConstants
 {
     public final static int DECK_SIZE = 72;

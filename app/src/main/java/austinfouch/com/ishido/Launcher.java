@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+// TODO: DOC
 public class Launcher extends AppCompatActivity
 {
 

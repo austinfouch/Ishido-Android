@@ -2,6 +2,7 @@ package austinfouch.com.ishido;
 
 import android.widget.LinearLayout;
 
+// TODO: DOC
 public class ScoreBoardView
 {
     private ScoreBoard m_scoreBoardModel;

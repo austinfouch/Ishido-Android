@@ -1,10 +1,10 @@
 package austinfouch.com.ishido;
 
+// TODO: DOC
 public class Turn
 {
     private Integer m_turnNum;
-    private IshidoColor m_colorPlayed;
-    private IshidoSymbol m_symbolPlayed;
+    private Tile m_tilePlayed;
     private Integer m_rowPlayed;
     private Integer m_colPlayed;
     private String m_playerName;
@@ -12,15 +12,17 @@ public class Turn
 
     public Turn()
     {
+        this.m_tilePlayed = null;
+        this.m_rowPlayed = null;
+        this.m_colPlayed = null;
+        this.m_playerName = null;
+        this.m_pointsScored = null;
     }
 
-    public Turn(Integer a_turnNum, IshidoColor a_colorPlayed, IshidoSymbol a_symbolPlayed,
-                Integer a_rowPlayed, Integer a_colPlayed, String a_playerName,
+    public Turn(Tile a_tilePlayed, Integer a_rowPlayed, Integer a_colPlayed, String a_playerName,
                 Integer a_pointsScored)
     {
-        this.m_turnNum = a_turnNum;
-        this.m_colorPlayed = a_colorPlayed;
-        this.m_symbolPlayed = a_symbolPlayed;
+        this.m_tilePlayed = a_tilePlayed;
         this.m_rowPlayed = a_rowPlayed;
         this.m_colPlayed = a_colPlayed;
         this.m_playerName = a_playerName;
@@ -47,24 +49,14 @@ public class Turn
         this.m_turnNum = a_turnNum;
     }
 
-    public IshidoColor getColorPlayed()
+    public Tile getTilePlayed()
     {
-        return m_colorPlayed;
+        return m_tilePlayed;
     }
 
-    public void setColorPlayed(IshidoColor a_colorPlayed)
+    public void setTilePlayed(Tile a_tilePlayed)
     {
-        this.m_colorPlayed = a_colorPlayed;
-    }
-
-    public IshidoSymbol getSymbolPlayed()
-    {
-        return m_symbolPlayed;
-    }
-
-    public void setSymbolPlayed(IshidoSymbol a_symbolPlayed)
-    {
-        this.m_symbolPlayed = a_symbolPlayed;
+        this.m_tilePlayed = a_tilePlayed;
     }
 
     public Integer getRowPlayed()
@@ -95,15 +87,5 @@ public class Turn
     public void setPlayerName(String a_playerName)
     {
         this.m_playerName = a_playerName;
-    }
-
-    @Override
-    public String toString() {
-        String turnStr = "[Turn " + getTurnNum() + "]: ";
-        turnStr += getPlayerName() + " played a ";
-        turnStr += getColorPlayed() + " " + getSymbolPlayed() + " tile at ";
-        turnStr += "row " + getRowPlayed() + ", column " + getColPlayed() + " for ";
-        turnStr += getPointsScored() + " points.";
-        return turnStr;
     }
 }

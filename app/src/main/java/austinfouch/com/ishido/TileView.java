@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 
+// TODO: DOC
 public class TileView
 {
     private Tile m_tileModel;

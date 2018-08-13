@@ -2,15 +2,21 @@ package austinfouch.com.ishido;
 
 import android.widget.TableLayout;
 
+// TODO: DOC
 public class BoardView
 {
     private Board m_boardModel;
-    private TableLayout m_boardView;
+    private TableLayout m_boardLayout;
 
-    public BoardView(Board a_boardModel, TableLayout a_boardView)
+    public BoardView(Board a_boardModel, TableLayout a_boardLayout)
     {
         this.m_boardModel = a_boardModel;
-        this.m_boardView = a_boardView;
+        this.m_boardLayout = a_boardLayout;
+    }
+
+    public void draw()
+    {
+        // TODO: draw
     }
 
     public Board getBoardModel()
@@ -25,11 +31,12 @@ public class BoardView
 
     public TableLayout getBoardView()
     {
-        return m_boardView;
+        return m_boardLayout;
     }
 
-    public void setBoardView(TableLayout a_boardView)
+    public void setBoardView(TableLayout a_boardLayout)
     {
-        this.m_boardView = a_boardView;
+        this.m_boardLayout = a_boardLayout;
     }
+
 }

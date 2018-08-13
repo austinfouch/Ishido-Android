@@ -3,6 +3,7 @@ package austinfouch.com.ishido;
 import android.view.View;
 import android.widget.ScrollView;
 
+// TODO: DOC
 public class ActivityLogView
 {
     private ActivityLog m_logModel;

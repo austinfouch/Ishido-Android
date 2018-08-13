@@ -7,6 +7,7 @@ package austinfouch.com.ishido;
  *      Tile class
  */
 
+// TODO: DOC FINISH
 public class Tile
 {
     private IshidoColor m_color;
