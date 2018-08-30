@@ -43,16 +43,16 @@
                 android:id="@+id/tileView0A"
                 android:layout_width="37.5dp"
                 android:layout_height="37.5dp"
-                android:background="@drawable/blue_blank_tile"
-                android:foreground="@drawable/blank_bolt_tile"
+                android:background="@drawable/blank_blank_tile"
+                android:foreground="@drawable/blank_blank_tile"
                 android:padding="1dp" />
 
             <ImageView
                 android:id="@+id/tileView0B"
                 android:layout_width="37.5dp"
                 android:layout_height="37.5dp"
-                android:background="@drawable/yellow_blank_tile"
-                android:foreground="@drawable/blank_bolt_tile"
+                android:background="@drawable/blank_blank_tile"
+                android:foreground="@drawable/blank_blank_tile"
                 android:padding="1dp" />
 
             <ImageView
@@ -122,8 +122,8 @@
                 android:id="@+id/tileView0L"
                 android:layout_width="37.5dp"
                 android:layout_height="37.5dp"
-                android:background="@drawable/yellow_blank_tile"
-                android:foreground="@drawable/blank_circle_tile"
+                android:background="@drawable/blank_blank_tile"
+                android:foreground="@drawable/blank_blank_tile"
                 android:padding="1dp" />
 
         </TableRow>
@@ -369,8 +369,8 @@
                 android:id="@+id/tileView3F"
                 android:layout_width="37.5dp"
                 android:layout_height="37.5dp"
-                android:background="@drawable/green_blank_tile"
-                android:foreground="@drawable/blank_cross_tile"
+                android:background="@drawable/blank_blank_tile"
+                android:foreground="@drawable/blank_blank_tile"
                 android:padding="1dp" />
 
             <ImageView
@@ -469,8 +469,8 @@
                 android:id="@+id/tileView4G"
                 android:layout_width="37.5dp"
                 android:layout_height="37.5dp"
-                android:background="@drawable/white_blank_tile"
-                android:foreground="@drawable/blank_heart_tile"
+                android:background="@drawable/blank_blank_tile"
+                android:foreground="@drawable/blank_blank_tile"
                 android:padding="1dp" />
 
             <ImageView
@@ -704,8 +704,8 @@
                 android:id="@+id/tileView7A"
                 android:layout_width="37.5dp"
                 android:layout_height="37.5dp"
-                android:background="@drawable/red_blank_tile"
-                android:foreground="@drawable/blank_star_tile"
+                android:background="@drawable/blank_blank_tile"
+                android:foreground="@drawable/blank_blank_tile"
                 android:padding="1dp" />
 
             <ImageView
@@ -782,8 +782,8 @@
                 android:id="@+id/tileView7L"
                 android:layout_width="37.5dp"
                 android:layout_height="37.5dp"
-                android:background="@drawable/black_blank_tile"
-                android:foreground="@drawable/blank_moon_tile"
+                android:background="@drawable/blank_blank_tile"
+                android:foreground="@drawable/blank_blank_tile"
                 android:padding="1dp" />
 
         </TableRow>
@@ -810,9 +810,9 @@
             android:layout_width="74dp"
             android:layout_height="75dp"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/green_blank_tile"
+            android:background="@drawable/blank_blank_tile"
             android:contentDescription="TODO"
-            android:foreground="@drawable/blank_moon_tile"
+            android:foreground="@drawable/blank_blank_tile"
             android:padding="2dp" />
 
         <LinearLayout
@@ -834,7 +834,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="64" />
+                android:text="72" />
         </LinearLayout>
 
         <LinearLayout
@@ -862,7 +862,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="1" />
+                    android:text="0" />
             </LinearLayout>
 
             <LinearLayout

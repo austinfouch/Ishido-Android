@@ -26,9 +26,13 @@ public class GameActivity extends AppCompatActivity
         LinearLayout scoreBoardLayout = (LinearLayout) findViewById(R.id.scoreLayout);
         ImageView currTileLayout = (ImageView) findViewById(R.id.currentTileView);
         TextView tileCountLayout = (TextView) findViewById(R.id.tileCountView);
+        TextView player1NameLayout = (TextView) findViewById(R.id.playerLabel);
+        TextView player1ScoreLayout = (TextView) findViewById(R.id.scoreView);
+        TextView player2NameLayout = (TextView) findViewById(R.id.playerLabel2);
+        TextView player2ScoreLayout = (TextView) findViewById(R.id.scoreView2);
 
-
-        Game game = new Game();
-        game.setup(boardLayout, scoreBoardLayout, currTileLayout, tileCountLayout);
+        Game game = new Game(this);
+        game.setup(boardLayout, player1NameLayout, player1ScoreLayout, player2NameLayout,
+                player2ScoreLayout, currTileLayout, tileCountLayout);
     }
 }

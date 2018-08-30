@@ -1,6 +1,7 @@
 package austinfouch.com.ishido;
 
 import android.app.Activity;
+import android.content.Context;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -24,8 +25,10 @@ public class Game
     private Turn m_lastTurn;
     private Integer m_turnNum;
     private TileCountView m_tileCountView;
+    private Integer m_tileCount;
+    private Context m_context;
 
-    public Game()
+    public Game(Context a_context)
     {
         this.m_currTile = new Tile();
         this.m_currTileView = null;
@@ -39,12 +42,15 @@ public class Game
         this.m_scoreBoardView = null;
         this.m_lastTurn = new Turn();
         this.m_turnNum = 0;
+        this.m_tileCountView = null;
+        this.m_tileCount = IshidoConstants.DECK_SIZE;
     }
 
     public Game(Tile a_currTile, TileView a_currTileView, Deck a_deck, Board a_board,
                 BoardView a_boardView, ActivityLog a_log, ActivityLogView a_logView,
                 Vector<Player> a_players, ScoreBoard a_scoreBoard, ScoreBoardView a_scoreBoardView,
-                Turn a_lastTurn, Integer a_turnNum)
+                Turn a_lastTurn, Integer a_turnNum, TileCountView a_tileCountView,
+                Integer a_tileCount, Context a_context)
     {
         this.m_currTile = a_currTile;
         this.m_currTileView = a_currTileView;
@@ -58,6 +64,9 @@ public class Game
         this.m_scoreBoardView = a_scoreBoardView;
         this.m_lastTurn = a_lastTurn;
         this.m_turnNum = a_turnNum;
+        this.m_tileCountView = a_tileCountView;
+        this.m_tileCount = a_tileCount;
+        this.m_context = a_context;
     }
 
     public void help(Tile currTile, Board gameBoard)
@@ -234,6 +243,11 @@ public class Game
         this.m_scoreBoardView = a_scoreBoardView;
     }
 
+    public TileCountView getTileCountView()
+    {
+        return m_tileCountView;
+    }
+
     public void setTileCountView(TileCountView a_tileCountView)
     {
         this.m_tileCountView = a_tileCountView;
@@ -249,14 +263,27 @@ public class Game
         this.m_lastTurn = a_lastTurn;
     }
 
-    public void setup(TableLayout a_boardLayout, LinearLayout a_scoreBoardLayout,
-                      ImageView a_currTileLayout, TextView a_tileCountLayout)
+    public void setContext(Context a_context)
+    {
+        this.m_context = a_context;
+    }
+
+    public Context getContext()
+    {
+        return this.m_context;
+    }
+
+    public void setup(TableLayout a_boardLayout, TextView a_player1_name, TextView a_player1_score,
+                      TextView a_player2_name, TextView a_player2_score, ImageView a_currTileLayout,
+                      TextView a_tileCountLayout)
     {
         // view initializations
-        setBoardView(new BoardView(getBoard(), a_boardLayout));
+        setBoardView(new BoardView(getBoard(), a_boardLayout, getContext()));
         setCurrTileView(new TileView(getCurrTile(), a_currTileLayout));
-        setScoreBoardView(new ScoreBoardView(getScoreBoard(), a_scoreBoardLayout));
         setTileCountView(new TileCountView(getDeck().getTiles().size(), a_tileCountLayout));
+        setScoreBoardView(new ScoreBoardView(getScoreBoard(), a_player1_name, a_player1_score,
+                a_player2_name, a_player2_score));
+        // TODO: setActivityLogView(new ActivityLog());
 
         // model initializations
         setDeck(new Deck());
@@ -272,6 +299,8 @@ public class Game
 
         getCurrTile().setColor(getDeck().top().getColor());
         getCurrTile().setSymbol(getDeck().top().getSymbol());
+        getCurrTileView().draw(getContext());
         getDeck().pop();
+        getTileCountView().draw();
     }
 }
