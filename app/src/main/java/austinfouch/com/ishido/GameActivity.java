@@ -2,6 +2,7 @@ package austinfouch.com.ishido;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -52,8 +53,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     View tileView = ((TableRow) rowView).getChildAt(j);
                     if ( tileView instanceof ImageView)
                     {
-                        tileView.setTag(0, i);
-                        tileView.setTag(1, j);
+                        tileView.setTag(R.string.row, i);
+                        tileView.setTag(R.string.col, j);
                         tileView.setOnClickListener(this);
                     }
                 }
@@ -64,13 +65,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         ImageView currTileLayout = (ImageView) findViewById(R.id.currentTileView);
+        final int confirmTileId = this.getResources().getIdentifier("confirm_tile.png", "drawable", this.getPackageName());
         int currTileId = currTileLayout.getId();
         if(v instanceof ImageView && v.getId() != currTileId) // is ImageView, but not currentTileView
         {
+            //v.setForeground(this.getDrawable(confirmTileId));
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Confirming Tile Placement")
-                    .setMessage("row:" + v.getTag(0).toString() + " col:" + v.getTag(1).toString() )
+                    .setMessage("row:" + v.getTag(R.string.row).toString() + " col:" + v.getTag(R.string.col).toString() )
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                     {
                         @Override

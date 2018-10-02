@@ -299,8 +299,8 @@ public class Game
 
         getCurrTile().setColor(getDeck().top().getColor());
         getCurrTile().setSymbol(getDeck().top().getSymbol());
-        getCurrTileView().draw(getContext());
+        //getCurrTileView().draw(getContext());
         getDeck().pop();
-        getTileCountView().draw();
+       // getTileCountView().draw();
     }
 }

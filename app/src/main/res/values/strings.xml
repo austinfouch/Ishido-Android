@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Ishido</string>
+    <string name="row">0</string>
+    <string name="col">1</string>
 </resources>
