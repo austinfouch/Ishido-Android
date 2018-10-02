@@ -1,13 +1,25 @@
 package austinfouch.com.ishido;
 
-/**
- * Author:  Austin Fouch
- * Date:    01/29/2018 10:26 PM
- * Tile.java
- *      Tile class
- */
+/**/
+/*
+    Tile.java
 
-// TODO: DOC FINISH
+    AUTHOR
+
+        Austin Fouch
+
+    DESCRIPTION
+
+        Tile class. Hold information related to each Tile used in a standard game of Ishido.
+            IshidoColor m_color     --> enumerated 'color' of the tile
+            IshidoSymbol m_symbol   --> enumerated 'symbol' of the tile
+
+    DATE
+
+        01/29/2018
+
+*/
+/**/
 public class Tile
 {
     private IshidoColor m_color;
@@ -17,7 +29,8 @@ public class Tile
     {
     }
 
-    /*!
+    /**/
+    /*
     Tile::Tile()
 
     NAME
@@ -53,13 +66,15 @@ public class Tile
             10:26pm 1/29/2018
 
     */
+    /**/
     public Tile(IshidoColor a_color, IshidoSymbol a_symbol)
     {
         this.m_color = a_color;
         this.m_symbol = a_symbol;
     }
 
-    /*!
+    /**/
+    /*
     Tile::setColor()
 
     NAME
@@ -89,12 +104,14 @@ public class Tile
             10:26pm 1/29/2018
 
     */
+    /**/
     public void setColor(IshidoColor a_color)
     {
         this.m_color = a_color;
     }
 
-    /*!
+    /**/
+    /*
         Tile::setSymbol()
 
         NAME
@@ -124,27 +141,27 @@ public class Tile
                 10:26pm 1/29/2018
 
     */
+    /**/
     public void setSymbol(IshidoSymbol a_symbol) 
     {
         this.m_symbol = a_symbol;
     }
 
-    /*!
-        Tile::setSymbol()
+    /**/
+    /*
+        Tile::getColor()
 
         NAME
 
-                Tile::setSymbol() - setter for the m_symbol member variable of the Tile class.
+                Tile::getColor() - getter for the m_color member variable of the Tile class.
 
         SYNOPSIS
 
-                public void Tile::setSymbol( IshidoSymbol a_symbol);
-                    a_symbol --> the symbol to set m_symbol to.
+                public void Tile::getColor();
 
         DESCRIPTION
 
-                This function will assign the value of the member variable m_symbol to the value of
-                the parameter a_symbol.
+                This function will return the value of the member variable m_color.
 
         RETURNS
 
@@ -159,16 +176,78 @@ public class Tile
                 10:26pm 1/29/2018
 
     */
+    /**/
     public IshidoColor getColor()
     {
         return this.m_color;
     }
 
+    /**/
+    /*
+        Tile::getSymbol()
+
+        NAME
+
+                Tile::getSymbol() - getter for the m_symbol member variable of the Tile class.
+
+        SYNOPSIS
+
+                public void Tile::getSymbol();
+
+        DESCRIPTION
+
+                This function will return the value of the member variable m_symbol.
+
+        RETURNS
+
+                Void.
+
+        AUTHOR
+
+                Austin Fouch
+
+        DATE
+
+                10:26pm 1/29/2018
+
+    */
+    /**/
     public IshidoSymbol getSymbol()
     {
         return this.m_symbol;
     }
 
+    /**/
+    /*
+        Tile::isMatch()
+
+        NAME
+
+                Tile::isMatch() - boolean function for determining if a tile matches with this tile.
+
+        SYNOPSIS
+
+                public boolean Tile::isMatch(Tile a_tile);
+                    a_tile --> the tile being compared to this tile.
+
+        DESCRIPTION
+
+                This function returns True if the passed tile matches this tile, False otherwise.
+
+        RETURNS
+
+                Boolean.
+
+        AUTHOR
+
+                Austin Fouch
+
+        DATE
+
+                10:26pm 1/29/2018
+
+    */
+    /**/
     public boolean isMatch(Tile a_tile)
     {
         if(this.m_color == a_tile.getColor())
@@ -185,10 +264,38 @@ public class Tile
         }
     }
 
+    /**/
+    /*
+        Tile::getColorResourceStr()
 
-    /**************************************************************************
-     Function Name: getColorResourceID
-     **************************************************************************/
+        NAME
+
+                Tile::getColorResourceStr() - used to determine the resource name associated with
+                                              this tile's color
+
+        SYNOPSIS
+
+                public String Tile::getColorResourceStr();
+
+        DESCRIPTION
+
+                This function returns a String value that is the name of a resource associated
+                with this tile's color.
+
+        RETURNS
+
+                String.
+
+        AUTHOR
+
+                Austin Fouch
+
+        DATE
+
+                10:26pm 1/29/2018
+
+    */
+    /**/
     public String getColorResourceStr()
     {
         String resIDStr = "";
@@ -220,9 +327,38 @@ public class Tile
         return resIDStr;
     }
 
-    /**************************************************************************
-     Function Name: getSymbolResourceID
-     **************************************************************************/
+    /**/
+    /*
+        Tile::getSymbolResourceStr()
+
+        NAME
+
+                Tile::getSymbolResourceStr() - used to determine the resource name associated with
+                                              this tile's symbol
+
+        SYNOPSIS
+
+                public String Tile::getSymbolResourceStr();
+
+        DESCRIPTION
+
+                This function returns a String value that is the name of a resource associated
+                with this tile's symbol.
+
+        RETURNS
+
+                String.
+
+        AUTHOR
+
+                Austin Fouch
+
+        DATE
+
+                10:26pm 1/29/2018
+
+    */
+    /**/
     public String getSymbolResourceStr()
     {
         String resIDStr = "blank_";

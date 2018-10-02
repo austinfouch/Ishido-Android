@@ -36,13 +36,4 @@ public class TileView
         this.m_tileModel = a_tileModel;
         this.m_tileView = a_tileView;
     }
-
-    public void draw(Context a_context)
-    {
-        //Drawable a_color = a_context.getResources().getDrawable(this.m_tileModel.getColorResourceID());
-        //Drawable a_symbol = a_context.getResources().getDrawable(this.m_tileModel.getSymbolResourceID());
-
-        //this.m_tileView.setBackground(a_color);
-        //this.m_tileView.setForeground(a_symbol);
-    }
 }
