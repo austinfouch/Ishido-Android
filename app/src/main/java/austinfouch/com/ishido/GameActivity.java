@@ -66,11 +66,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        // TODO: split these into functions: drawCurrTile(), drawBoard(), drawScoreBoard(), drawActivityLog(), drawTileCount()
-        drawCurrTile(game.getCurrTile(), currTileLayout);
+        // TODO: split these into functions: drawScoreBoard(), drawActivityLog()
+        // TODO: multiple white tiles are showing up when drawing board....
+        drawTile(game.getCurrTile(), currTileLayout);
+        drawBoard(game.getBoard(), boardLayout);
+        game.getDeck().pop();
+        drawTileCount(game.getDeck(), tileCountLayout);
     }
 
-    public void drawCurrTile(Tile a_currTile, ImageView a_currTileView)
+    public void drawTile(Tile a_currTile, ImageView a_currTileView)
     {
         Resources resources = this.getResources();
         // draw board, currentTile
@@ -85,6 +89,33 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         a_currTileView.setForeground(fg);
         a_currTileView.setBackground(bg);
     }
+
+    public void drawTileCount(Deck a_deck, TextView a_tileCountView)
+    {
+        Integer deckSize = a_deck.getTiles().size();
+        a_tileCountView.setText(deckSize.toString());
+    }
+
+    public void drawBoard(Board a_board, TableLayout a_boardView)
+    {
+        for( Integer i = 0; i < a_boardView.getChildCount(); i++)
+        {
+            View rowView = a_boardView.getChildAt(i);
+            if( rowView instanceof TableRow)
+            {
+                for( Integer j = 0; j < ((TableRow) rowView).getChildCount(); j++)
+                {
+                    View tileView = ((TableRow) rowView).getChildAt(j);
+                    if ( tileView instanceof ImageView)
+                    {
+                        Tile currTile = a_board.getTile(i, j);
+                        drawTile(currTile, (ImageView) tileView);
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public void onClick(View v) {
         // grab currentTile and make sure the onclick doesnt trigger for it

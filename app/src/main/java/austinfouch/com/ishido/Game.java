@@ -289,13 +289,43 @@ public class Game
         setDeck(new Deck());
         getDeck().setup();
 
+        for(int row = 0; row < IshidoConstants.NUM_BOARD_ROWS; row++)
+        {
+            Vector<Tile> tempTiles = new Vector<>();
+            for(int col = 0; col < IshidoConstants.NUM_BOARD_COLS; col++)
+            {
+                Tile tempTile = new Tile(IshidoColor.BLANK, IshidoSymbol.BLANK);
+                tempTiles.add(tempTile);
+            }
+
+            getBoard().getTiles().add(tempTiles);
+        }
+
         Vector<Tile> setupTiles = getDeck().getSetupTiles();
+
+        // Intialize board
+        // set row 0, col 0
+        getBoard().setTile(0, 0, setupTiles.firstElement());
+        setupTiles.removeElementAt(0);
+        // set row 0, col 11
+        getBoard().setTile(0, 11, setupTiles.firstElement());
+        setupTiles.removeElementAt(0);
+        // set row 3, col 5
+        getBoard().setTile(3, 5, setupTiles.firstElement());
+        setupTiles.removeElementAt(0);
+        // set row 4, col 6
+        getBoard().setTile(4, 6, setupTiles.firstElement());
+        setupTiles.removeElementAt(0);
+        // set row 7, col 0
+        getBoard().setTile(7, 0, setupTiles.firstElement());
+        setupTiles.removeElementAt(0);
+        // set row 7, col 11
+        getBoard().setTile(7, 11, setupTiles.firstElement());
+        setupTiles.removeElementAt(0);
 
         // TODO: draw() functions throw errors, maybe move drawing to only be in GameActivity
         getCurrTile().setColor(getDeck().top().getColor());
         getCurrTile().setSymbol(getDeck().top().getSymbol());
-        //getCurrTileView().draw(getContext());
         getDeck().pop();
-       // getTileCountView().draw();
     }
 }

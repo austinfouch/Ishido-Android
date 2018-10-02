@@ -55,10 +55,16 @@ public class Deck
         {
             for (IshidoColor color : IshidoColor.values())
             {
-                for (IshidoSymbol symbol : IshidoSymbol.values())
+                if (color != IshidoColor.BLANK)
                 {
-                    Tile t = new Tile(color, symbol);
-                    this.push(t);
+                    for (IshidoSymbol symbol : IshidoSymbol.values())
+                    {
+                        if(symbol != IshidoSymbol.BLANK)
+                        {
+                            Tile t = new Tile(color, symbol);
+                            this.push(t);
+                        }
+                    }
                 }
             }
         }
