@@ -2,6 +2,7 @@ package austinfouch.com.ishido;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.v7.app.ActionBar;
@@ -26,8 +27,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        // hides big action bar on app
         getSupportActionBar().hide();
 
+        // initialize layouts
         TableLayout boardLayout = (TableLayout) findViewById(R.id.boardLayout);
         LinearLayout scoreBoardLayout = (LinearLayout) findViewById(R.id.scoreLayout);
         ImageView currTileLayout = (ImageView) findViewById(R.id.currentTileView);
@@ -37,12 +40,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         TextView player2NameLayout = (TextView) findViewById(R.id.playerLabel2);
         TextView player2ScoreLayout = (TextView) findViewById(R.id.scoreView2);
 
+        // create new game
         Game game = new Game(this);
         game.setup(boardLayout, player1NameLayout, player1ScoreLayout, player2NameLayout,
                 player2ScoreLayout, currTileLayout, tileCountLayout);
 
         // TODO: HELP, QUIT listeners
 
+        // establish row tags, column tags, and onclick listeners for every tileView
         for( Integer i = 0; i < boardLayout.getChildCount(); i++)
         {
             View rowView = boardLayout.getChildAt(i);
@@ -60,16 +65,35 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
+
+        // TODO: split these into functions: drawCurrTile(), drawBoard(), drawScoreBoard(), drawActivityLog(), drawTileCount()
+        drawCurrTile(game.getCurrTile(), currTileLayout);
     }
 
+    public void drawCurrTile(Tile a_currTile, ImageView a_currTileView)
+    {
+        Resources resources = this.getResources();
+        // draw board, currentTile
+        String fgResStr = a_currTile.getSymbolResourceStr();
+        final int fgResId = resources.getIdentifier(fgResStr, "drawable", getPackageName());
+        Drawable fg = getDrawable(fgResId);
+
+        String bgResStr = a_currTile.getColorResourceStr();
+        final int bgResId = resources.getIdentifier(bgResStr, "drawable", getPackageName());
+        Drawable bg = getDrawable(bgResId);
+
+        a_currTileView.setForeground(fg);
+        a_currTileView.setBackground(bg);
+    }
     @Override
     public void onClick(View v) {
+        // grab currentTile and make sure the onclick doesnt trigger for it
         ImageView currTileLayout = (ImageView) findViewById(R.id.currentTileView);
         final int confirmTileId = this.getResources().getIdentifier("confirm_tile.png", "drawable", this.getPackageName());
         int currTileId = currTileLayout.getId();
         if(v instanceof ImageView && v.getId() != currTileId) // is ImageView, but not currentTileView
         {
-            //v.setForeground(this.getDrawable(confirmTileId));
+            // TODO: v.setForeground(this.getDrawable(confirmTileId)); throws an err
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Confirming Tile Placement")

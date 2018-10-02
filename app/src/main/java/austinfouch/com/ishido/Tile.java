@@ -189,7 +189,7 @@ public class Tile
     /**************************************************************************
      Function Name: getColorResourceID
      **************************************************************************/
-    public int getColorResourceID()
+    public String getColorResourceStr()
     {
         String resIDStr = "";
         switch(this.m_color)
@@ -216,43 +216,41 @@ public class Tile
                 break;
         }
 
-        resIDStr += "blank_tile.png";
-        int id = IshidoConstants.getResId(resIDStr, R.drawable.class);
-        return id;
+        resIDStr += "blank_tile";
+        return resIDStr;
     }
 
     /**************************************************************************
      Function Name: getSymbolResourceID
      **************************************************************************/
-    public int getSymbolResourceID()
+    public String getSymbolResourceStr()
     {
         String resIDStr = "blank_";
         switch(this.m_symbol)
         {
             case BOLT:
-                resIDStr = "bolt_";
+                resIDStr += "bolt_";
                 break;
             case CIRCLE:
-                resIDStr = "circle_";
+                resIDStr += "circle_";
                 break;
             case CROSS:
-                resIDStr = "cross_";
+                resIDStr += "cross_";
                 break;
             case HEART:
-                resIDStr = "heart_";
+                resIDStr += "heart_";
                 break;
             case MOON:
-                resIDStr = "moon_";
+                resIDStr += "moon_";
                 break;
             case STAR:
-                resIDStr = "star_";
+                resIDStr += "star_";
                 break;
             default:
                 break;
         }
 
-        resIDStr += "tile.png";
-        int id = IshidoConstants.getResId(resIDStr, R.drawable.class);
-        return id;
+        resIDStr += "tile";
+        return resIDStr;
     }
 }

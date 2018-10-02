@@ -24,8 +24,8 @@ public class Board
 
     public void markAsHelp(Integer a_rowIndex, Integer a_colIndex)
     {
-        getTile(a_rowIndex, a_colIndex).setSymbol(IshidoSymbol.HELP);
-        getTile(a_rowIndex, a_colIndex).setColor(IshidoColor.HELP);
+        //getTile(a_rowIndex, a_colIndex).setSymbol(IshidoSymbol.HELP);
+       //getTile(a_rowIndex, a_colIndex).setColor(IshidoColor.HELP);
     }
 
     public Tile getTile(int rowIndex, int colIndex)

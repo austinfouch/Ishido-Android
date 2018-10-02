@@ -290,13 +290,8 @@ public class Game
         getDeck().setup();
 
         Vector<Tile> setupTiles = getDeck().getSetupTiles();
-        // set row 0, col 0
-        // set row 0, col 11
-        // set row 3, col 5
-        // set row 4, col 6
-        // set row 7, col 0
-        // set row 7, col 11
 
+        // TODO: draw() functions throw errors, maybe move drawing to only be in GameActivity
         getCurrTile().setColor(getDeck().top().getColor());
         getCurrTile().setSymbol(getDeck().top().getSymbol());
         //getCurrTileView().draw(getContext());
