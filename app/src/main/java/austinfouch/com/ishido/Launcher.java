@@ -22,6 +22,12 @@ public class Launcher extends AppCompatActivity
 
     public void Play(View view)
     {
+        //Intent intent = new Intent(this, GameActivity.class);
+        //startActivity(intent);
+    }
+
+    public void PlaySolitaire(View view)
+    {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }

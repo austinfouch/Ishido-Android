@@ -53,6 +53,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setupBoardListeners(boardLayout);
 
         // TODO: multiple white tiles are showing up when drawing board....
+        // draw current tile, board, and tile count
         drawTile(game.getCurrTile(), currTileLayout);
         drawBoard(game.getBoard(), boardLayout);
         game.getDeck().pop();
@@ -86,22 +87,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void drawTileCount(Deck a_deck, TextView a_tileCountView)
     {
+        // set tile count to current deck size
         Integer deckSize = a_deck.getTiles().size();
         a_tileCountView.setText(deckSize.toString());
     }
 
     public void drawBoard(Board a_board, TableLayout a_boardView)
     {
+        // loop over children (TableRow) of a_boardView (TableLayout)
         for( Integer i = 0; i < a_boardView.getChildCount(); i++)
         {
             View rowView = a_boardView.getChildAt(i);
             if( rowView instanceof TableRow)
             {
+                // loop over children (ImageView) of rowView (TableRow)
                 for( Integer j = 0; j < ((TableRow) rowView).getChildCount(); j++)
                 {
                     View tileView = ((TableRow) rowView).getChildAt(j);
                     if ( tileView instanceof ImageView)
                     {
+                        // get the tile from board model at i, j and draw the tile at that position
                         Tile currTile = a_board.getTile(i, j);
                         drawTile(currTile, (ImageView) tileView);
                     }
@@ -114,12 +119,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     {
         Vector<Integer> rows = new Vector<>();
         Vector<Integer> cols = new Vector<>();
-        int currValue;
+        int currValue = 0;
 
+        // loop over rows then cols, assessing value of placing the current tile at every position
         for (int row = 0; row < IshidoConstants.NUM_BOARD_ROWS; row++)
         {
             for (int col = 0; col < IshidoConstants.NUM_BOARD_COLS; col++)
             {
+                // calculate the score of current tile at the current positions, if it > 0, add to help
                 currValue = a_game.calculateScore(a_game.getCurrTile(), a_game.getBoard(), row, col);
                 if( currValue > 0)
                 {
@@ -129,6 +136,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
+        // loop over rows & cols which hold positions of tiles to be marked as help
         for (int i = 0; i < rows.size(); i++)
         {
             View boardRow = a_boardLayout.getChildAt(rows.get(i));
@@ -139,16 +147,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void setupBoardListeners(TableLayout a_boardLayout)
     {
+        // loop over children (TableRow) of a_boardView (TableLayout)
         for( Integer i = 0; i < a_boardLayout.getChildCount(); i++)
         {
             View rowView = a_boardLayout.getChildAt(i);
             if( rowView instanceof TableRow)
             {
+                // loop over children (ImageView) of rowView (TableRow)
                 for( Integer j = 0; j < ((TableRow) rowView).getChildCount(); j++)
                 {
                     View tileView = ((TableRow) rowView).getChildAt(j);
                     if ( tileView instanceof ImageView)
                     {
+                        // set tags --> 0:row 1:col, enable OnClickListener
                         tileView.setTag(R.string.row, i);
                         tileView.setTag(R.string.col, j);
                         tileView.setOnClickListener(this);

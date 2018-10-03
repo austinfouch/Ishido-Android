@@ -8,25 +8,32 @@
     tools:layout_editor_absoluteY="73dp">
 
     <Button
-        android:id="@+id/playButton"
+        android:id="@+id/solitaireButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="PlaySolitaire"
+        android:text="Solitaire"
+        app:layout_constraintBaseline_toBaselineOf="@+id/stdButton"
+        app:layout_constraintEnd_toStartOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/stdButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:onClick="Play"
-        android:text="Play Test"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Standard"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="78dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginBottom="77dp"
         android:text="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/playButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
