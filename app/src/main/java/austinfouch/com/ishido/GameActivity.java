@@ -22,6 +22,15 @@ import java.util.Vector;
 // TODO: DOC
 public class GameActivity extends AppCompatActivity implements View.OnClickListener
 {
+    private Game m_game;
+    private TableLayout m_boardLayout;
+    private LinearLayout m_scoreBoardLayout;
+    private ImageView m_currTileLayout;
+    private TextView m_tileCountLayout;
+    private TextView m_player1NameLayout;
+    private TextView m_player1ScoreLayout;
+    private TextView m_player2NameLayout;
+    private TextView m_player2ScoreLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,31 +42,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().hide();
 
         // initialize layouts
-        TableLayout boardLayout = (TableLayout) findViewById(R.id.boardLayout);
-        LinearLayout scoreBoardLayout = (LinearLayout) findViewById(R.id.scoreLayout);
-        ImageView currTileLayout = (ImageView) findViewById(R.id.currentTileView);
-        TextView tileCountLayout = (TextView) findViewById(R.id.tileCountView);
-        TextView player1NameLayout = (TextView) findViewById(R.id.playerLabel);
-        TextView player1ScoreLayout = (TextView) findViewById(R.id.scoreView);
-        TextView player2NameLayout = (TextView) findViewById(R.id.playerLabel2);
-        TextView player2ScoreLayout = (TextView) findViewById(R.id.scoreView2);
+        m_boardLayout = (TableLayout) findViewById(R.id.boardLayout);
+        m_scoreBoardLayout = (LinearLayout) findViewById(R.id.scoreLayout);
+        m_currTileLayout = (ImageView) findViewById(R.id.currentTileView);
+        m_tileCountLayout = (TextView) findViewById(R.id.tileCountView);
+        m_player1NameLayout = (TextView) findViewById(R.id.playerLabel);
+        m_player1ScoreLayout = (TextView) findViewById(R.id.scoreView);
+        m_player2NameLayout = (TextView) findViewById(R.id.playerLabel2);
+        m_player2ScoreLayout = (TextView) findViewById(R.id.scoreView2);
 
         // create new game
-        Game game = new Game();
-        game.setup(boardLayout, player1NameLayout, player1ScoreLayout, player2NameLayout,
-                player2ScoreLayout, currTileLayout, tileCountLayout);
+        this.m_game = new Game();
+        this.m_game.setup(m_boardLayout, m_player1NameLayout, m_player1ScoreLayout, m_player2NameLayout,
+                m_player2ScoreLayout, m_currTileLayout, m_tileCountLayout);
 
         // TODO: HELP, QUIT listeners
 
         // establish row tags, column tags, and onclick listeners for every tileView
-        setupBoardListeners(boardLayout);
+        setupBoardListeners(m_boardLayout);
 
         // TODO: multiple white tiles are showing up when drawing board....
         // draw current tile, board, and tile count
-        drawTile(game.getCurrTile(), currTileLayout);
-        drawBoard(game.getBoard(), boardLayout);
-        game.getDeck().pop();
-        drawTileCount(game.getDeck(), tileCountLayout);
+        drawTile(this.m_game.getCurrTile(), m_currTileLayout);
+        drawBoard(this.m_game.getBoard(), m_boardLayout);
+        this.m_game.getDeck().pop();
+        drawTileCount(this.m_game.getDeck(), m_tileCountLayout);
 
         // TODO: add to onclick --> try and place current tile. this will be working solitaire.
     }
@@ -170,14 +179,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
+        //
+
         // grab currentTile and make sure the onclick doesnt trigger for it
-        ImageView currTileLayout = (ImageView) findViewById(R.id.currentTileView);
+        ImageView currTileView = (ImageView) findViewById(R.id.currentTileView);
         final int confirmTileId = this.getResources().getIdentifier("confirm_tile.png", "drawable", this.getPackageName());
-        int currTileId = currTileLayout.getId();
+        int currTileId = currTileView.getId();
         if(v instanceof ImageView && v.getId() != currTileId) // is ImageView, but not currentTileView
         {
-            // TODO: v.setForeground(this.getDrawable(confirmTileId)); throws an err
+            // build alert dialog, telling user of the tile position clicked
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Confirming Tile Placement")
@@ -186,7 +197,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            finish();
+                            // draw current tile on board
+                            drawTile(m_game.getCurrTile(), (ImageView) v);
+
+                            int row = (int) v.getTag(R.string.row);
+                            int col = (int) v.getTag(R.string.col);
+                            // set tile in board model, current tile to deck.top(), pop deck
+                            m_game.getBoard().setTile(row, col, m_game.getCurrTile());
+                            m_game.setCurrTile(m_game.getDeck().top());
+                            m_game.getDeck().pop();
+
+                            // draw current tile, board, tile count, score
+                            drawTile(m_game.getCurrTile(), m_currTileLayout);
+                            drawBoard(m_game.getBoard(), m_boardLayout);
+                            drawTileCount(m_game.getDeck(), m_tileCountLayout);
+                            // TODO: drawScore()
+                            dialog.dismiss();
                         }
 
                     })
