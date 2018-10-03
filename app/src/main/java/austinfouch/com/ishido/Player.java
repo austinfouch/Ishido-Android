@@ -4,51 +4,50 @@ package austinfouch.com.ishido;
 public class Player
 {
     private Integer m_score;
-    private Tile m_currTile;
     private String m_name;
 
-    public Integer isLegalPlay(Tile a_currTile, Board gameBoard, int rowIndex, int colIndex)
+    public Integer isLegalPlay(Tile a_currTile, Board a_board, int a_row, int a_col)
     {
-        Integer value = 0;
+        int points = 0;
         // check tile match left
-        if( colIndex != 0)
+        if( a_col != 0)
         {
-            if( a_currTile.isMatch(gameBoard.getTile(rowIndex, colIndex)))
+            if( a_currTile.isMatch(a_board.getTile(a_row, a_col)))
             {
-                value++;
+                points++;
             }
         }
         // check tile match right
-        if( colIndex != IshidoConstants.NUM_BOARD_COLS - 1)
+        if( a_col != IshidoConstants.NUM_BOARD_COLS - 1)
         {
-            if( a_currTile.isMatch(gameBoard.getTile(rowIndex, colIndex)))
+            if( a_currTile.isMatch(a_board.getTile(a_row, a_col)))
             {
-                value++;
+                points++;
             }
         }
         // check tile match above
-        if( rowIndex != 0)
+        if( a_row != 0)
         {
-            if( a_currTile.isMatch(gameBoard.getTile(rowIndex, colIndex)))
+            if( a_currTile.isMatch(a_board.getTile(a_row, a_col)))
             {
-                value++;
+                points++;
             }
         }
         // check tile match below
-        if( colIndex != IshidoConstants.NUM_BOARD_ROWS - 1)
+        if( a_col != IshidoConstants.NUM_BOARD_ROWS - 1)
         {
-            if( a_currTile.isMatch(gameBoard.getTile(rowIndex, colIndex)))
+            if( a_currTile.isMatch(a_board.getTile(a_row, a_col)))
             {
-                value++;
+                points++;
             }
         }
-        // double 4-way match value
-        if( value > 3)
+        // double 4-way match points
+        if( points > 3)
         {
-            value = value * 2;
+            points = points * 2;
         }
 
-        return value;
+        return points;
     }
 
     public String getName()
@@ -71,27 +70,15 @@ public class Player
         this.m_score = a_score;
     }
 
-    public Tile getCurrTile()
+    public Player(String a_name, Integer a_score)
     {
-        return m_currTile;
-    }
-
-    public void setCurrTile(Tile a_tile)
-    {
-        this.m_currTile = a_tile;
-    }
-
-    public Player(Integer a_score, Tile a_tile, String a_name)
-    {
-        this.m_score = a_score;
-        this.m_currTile = a_tile;
         this.m_name = a_name;
+        this.m_score = a_score;
     }
 
     public Player()
     {
         this.m_name = new String();
-        this.m_currTile = new Tile();
         this.m_score = 0;
     }
 }

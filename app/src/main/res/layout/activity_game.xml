@@ -794,11 +794,10 @@
         android:id="@+id/panelLayout"
         android:layout_width="118dp"
         android:layout_height="300dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="#c36c6b6a"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -807,13 +806,15 @@
 
         <ImageView
             android:id="@+id/currentTileView"
-            android:layout_width="74dp"
-            android:layout_height="75dp"
+            android:layout_width="81dp"
+            android:layout_height="77dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/blank_blank_tile"
             android:contentDescription="TODO"
             android:foreground="@drawable/blank_blank_tile"
-            android:padding="2dp" />
+            android:padding="5dp" />
 
         <LinearLayout
             android:id="@+id/tileCountLayout"

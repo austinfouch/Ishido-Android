@@ -10,6 +10,7 @@ import java.util.Vector;
 public class ScoreBoard {
     private Vector<Integer> m_scores;
     private Vector<String> m_names;
+
     private TextView m_player1NameLayout;
     private TextView m_player1ScoreLayout;
     private TextView m_player2NameLayout;
@@ -17,9 +18,8 @@ public class ScoreBoard {
 
     public ScoreBoard()
     {
-        m_names = new Vector<String>();
-        m_scores = new Vector<Integer>();
     }
+
 
     public void draw()
     {

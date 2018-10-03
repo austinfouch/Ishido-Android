@@ -40,7 +40,7 @@ public class Board
     DESCRIPTION
 
             This function will construct a Board object. The only member variable of the constructed
-            Board object, m_tiles, is set to be a 2D Vector of Tiles.
+            Board object, m_tiles, is set to be a 2D Vector of Tiles filled with blank tiles.
 
     RETURNS
 
@@ -58,7 +58,18 @@ public class Board
     /**/
     public Board()
     {
-        this.m_tiles = new Vector<Vector<Tile>>();
+        m_tiles = new Vector<>();
+        for(int row = 0; row < IshidoConstants.NUM_BOARD_ROWS; row++)
+        {
+            Vector<Tile> tempTiles = new Vector<>();
+            for(int col = 0; col < IshidoConstants.NUM_BOARD_COLS; col++)
+            {
+                Tile tempTile = new Tile(IshidoColor.BLANK, IshidoSymbol.BLANK);
+                tempTiles.add(tempTile);
+            }
+
+            m_tiles.add(tempTiles);
+        }
     }
 
     /**/

@@ -6,6 +6,15 @@ import java.util.Vector;
 // TODO: DOC
 public class Human extends Player
 {
+    public Human()
+    {
+        super();
+    }
+
+    public Human(String a_name, Integer a_score)
+    {
+        super(a_name, a_score);
+    }
 
     public Turn play(Tile a_currTile, Board a_gameBoard, Integer a_rowIndex, Integer a_colIndex)
     {

@@ -313,11 +313,11 @@ public class Deck
         {
             for (IshidoColor color : IshidoColor.values())
             {
-                if (color != IshidoColor.BLANK)
+                if ((color != IshidoColor.BLANK) && (color != IshidoColor.HELP))
                 {
                     for (IshidoSymbol symbol : IshidoSymbol.values())
                     {
-                        if(symbol != IshidoSymbol.BLANK)
+                        if((symbol != IshidoSymbol.BLANK) && (symbol != IshidoSymbol.HELP))
                         {
                             Tile t = new Tile(color, symbol);
                             this.push(t);

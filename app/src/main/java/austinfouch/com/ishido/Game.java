@@ -7,42 +7,61 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.Vector;
 
 // TODO: DOC
 public class Game
 {
     private Tile m_currTile;
-    private TileView m_currTileView;
+    //private TileView m_currTileView;
     private Deck m_deck;
     private Board m_board;
-    private BoardView m_boardView;
+    //private BoardView m_boardView;
     private ActivityLog m_log;
-    private ActivityLogView m_logView;
+    //private ActivityLogView m_logView;
     private Vector<Player> m_players;
     private ScoreBoard m_scoreBoard;
-    private ScoreBoardView m_scoreBoardView;
+    //private ScoreBoardView m_scoreBoardView;
     private Turn m_lastTurn;
     private Integer m_turnNum;
-    private TileCountView m_tileCountView;
+    //private TileCountView m_tileCountView;
     private Integer m_tileCount;
-    private Context m_context;
+    //private Context m_context;
+
+    public Game()
+    {
+        this.m_currTile = new Tile();
+        //this.m_currTileView = null;
+        this.m_deck = new Deck();
+        this.m_board = new Board();
+        //this.m_boardView = null;
+        this.m_log = new ActivityLog();
+        // this.m_logView = null;
+        this.m_players = new Vector<Player>();
+        this.m_scoreBoard = new ScoreBoard();
+        // this.m_scoreBoardView = null;
+        this.m_lastTurn = new Turn();
+        this.m_turnNum = 0;
+        // this.m_tileCountView = null;
+        this.m_tileCount = IshidoConstants.DECK_SIZE;
+    }
 
     public Game(Context a_context)
     {
         this.m_currTile = new Tile();
-        this.m_currTileView = null;
+        //this.m_currTileView = null;
         this.m_deck = new Deck();
         this.m_board = new Board();
-        this.m_boardView = null;
+        //this.m_boardView = null;
         this.m_log = new ActivityLog();
-        this.m_logView = null;
+       // this.m_logView = null;
         this.m_players = new Vector<Player>();
         this.m_scoreBoard = new ScoreBoard();
-        this.m_scoreBoardView = null;
+       // this.m_scoreBoardView = null;
         this.m_lastTurn = new Turn();
         this.m_turnNum = 0;
-        this.m_tileCountView = null;
+       // this.m_tileCountView = null;
         this.m_tileCount = IshidoConstants.DECK_SIZE;
     }
 
@@ -53,45 +72,20 @@ public class Game
                 Integer a_tileCount, Context a_context)
     {
         this.m_currTile = a_currTile;
-        this.m_currTileView = a_currTileView;
+       // this.m_currTileView = a_currTileView;
         this.m_deck = a_deck;
         this.m_board = a_board;
-        this.m_boardView = a_boardView;
+       // this.m_boardView = a_boardView;
         this.m_log = a_log;
-        this.m_logView = a_logView;
+       // this.m_logView = a_logView;
         this.m_players = a_players;
         this.m_scoreBoard = a_scoreBoard;
-        this.m_scoreBoardView = a_scoreBoardView;
+       // this.m_scoreBoardView = a_scoreBoardView;
         this.m_lastTurn = a_lastTurn;
         this.m_turnNum = a_turnNum;
-        this.m_tileCountView = a_tileCountView;
+      //  this.m_tileCountView = a_tileCountView;
         this.m_tileCount = a_tileCount;
-        this.m_context = a_context;
-    }
-
-    public void help(Tile currTile, Board gameBoard)
-    {
-        Vector<Integer> rows = new Vector<>();
-        Vector<Integer> cols = new Vector<>();
-        int currValue;
-
-        for (int row = 0; row < IshidoConstants.NUM_BOARD_ROWS; row++)
-        {
-            for (int col = 0; col < IshidoConstants.NUM_BOARD_COLS; col++)
-            {
-                currValue = calculateScore(currTile, gameBoard, row, col);
-                if( currValue > 0)
-                {
-                    rows.add(row);
-                    cols.add(col);
-                }
-            }
-        }
-
-        for (int i = 0; i < rows.size(); i++)
-        {
-            gameBoard.markAsHelp(rows.elementAt(i), cols.elementAt(i));
-        }
+      //  this.m_context = a_context;
     }
 
     public Integer calculateScore(Tile a_currTile, Board gameBoard, int rowIndex, int colIndex)
@@ -158,6 +152,7 @@ public class Game
         this.m_currTile = a_currTile;
     }
 
+    /*
     public TileView getCurrTileView()
     {
         return m_currTileView;
@@ -167,7 +162,7 @@ public class Game
     {
         this.m_currTileView = a_currTileView;
     }
-
+    */
     public Deck getDeck()
     {
         return m_deck;
@@ -188,6 +183,7 @@ public class Game
         this.m_board = a_board;
     }
 
+    /*
     public BoardView getBoardView()
     {
         return m_boardView;
@@ -197,6 +193,7 @@ public class Game
     {
         this.m_boardView = a_boardView;
     }
+    */
 
     public ActivityLog getLog()
     {
@@ -208,6 +205,7 @@ public class Game
         this.m_log = a_log;
     }
 
+    /*
     public ActivityLogView getLogView()
     {
         return m_logView;
@@ -217,6 +215,7 @@ public class Game
     {
         this.m_logView = a_logView;
     }
+    */
 
     public Vector<Player> getPlayers()
     {
@@ -233,6 +232,7 @@ public class Game
         return m_scoreBoard;
     }
 
+    /*
     public ScoreBoardView getScoreBoardView()
     {
         return m_scoreBoardView;
@@ -252,6 +252,7 @@ public class Game
     {
         this.m_tileCountView = a_tileCountView;
     }
+    */
 
     public Turn getLastTurn()
     {
@@ -263,6 +264,7 @@ public class Game
         this.m_lastTurn = a_lastTurn;
     }
 
+    /*
     public void setContext(Context a_context)
     {
         this.m_context = a_context;
@@ -272,60 +274,57 @@ public class Game
     {
         return this.m_context;
     }
+    */
 
     public void setup(TableLayout a_boardLayout, TextView a_player1_name, TextView a_player1_score,
                       TextView a_player2_name, TextView a_player2_score, ImageView a_currTileLayout,
                       TextView a_tileCountLayout)
     {
         // view initializations
+        /*
         setBoardView(new BoardView(getBoard(), a_boardLayout, getContext()));
         setCurrTileView(new TileView(getCurrTile(), a_currTileLayout));
         setTileCountView(new TileCountView(getDeck().getTiles().size(), a_tileCountLayout));
         setScoreBoardView(new ScoreBoardView(getScoreBoard(), a_player1_name, a_player1_score,
                 a_player2_name, a_player2_score));
-        // TODO: setActivityLogView(new ActivityLog());
+        */
 
-        // model initializations
+        // Initialize deck
+        // setupTiles are the 6 tiles that start on the Ishido board
         setDeck(new Deck());
         getDeck().setup();
-
-        for(int row = 0; row < IshidoConstants.NUM_BOARD_ROWS; row++)
-        {
-            Vector<Tile> tempTiles = new Vector<>();
-            for(int col = 0; col < IshidoConstants.NUM_BOARD_COLS; col++)
-            {
-                Tile tempTile = new Tile(IshidoColor.BLANK, IshidoSymbol.BLANK);
-                tempTiles.add(tempTile);
-            }
-
-            getBoard().getTiles().add(tempTiles);
-        }
-
         Vector<Tile> setupTiles = getDeck().getSetupTiles();
+        Collections.shuffle(setupTiles);
 
-        // Intialize board
-        // set row 0, col 0
+        // initialize board
+        // set the board so these setupTiles take up specific positions:
+        // (0,0), (0,11), (3, 5), (4, 6), (7, 0), (7, 11)
+        setBoard(new Board());
         getBoard().setTile(0, 0, setupTiles.firstElement());
         setupTiles.removeElementAt(0);
-        // set row 0, col 11
         getBoard().setTile(0, 11, setupTiles.firstElement());
         setupTiles.removeElementAt(0);
-        // set row 3, col 5
         getBoard().setTile(3, 5, setupTiles.firstElement());
         setupTiles.removeElementAt(0);
-        // set row 4, col 6
         getBoard().setTile(4, 6, setupTiles.firstElement());
         setupTiles.removeElementAt(0);
-        // set row 7, col 0
         getBoard().setTile(7, 0, setupTiles.firstElement());
         setupTiles.removeElementAt(0);
-        // set row 7, col 11
         getBoard().setTile(7, 11, setupTiles.firstElement());
         setupTiles.removeElementAt(0);
 
-        // TODO: draw() functions throw errors, maybe move drawing to only be in GameActivity
+        // Initialize current tile with top tile of deck
         getCurrTile().setColor(getDeck().top().getColor());
         getCurrTile().setSymbol(getDeck().top().getSymbol());
         getDeck().pop();
+
+        // Initialize scores
+        setPlayers(new Vector<Player>());
+        getPlayers().add(new Human("Austin", 0));
+        getPlayers().add(new Computer("Hal", 0));
+
+        // Initialize Activity Log
+        setLog(new ActivityLog());
+        getLog().addActivity("The Game has begun!");
     }
 }

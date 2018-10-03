@@ -35,7 +35,7 @@ public class BoardView
                     {
                         ImageView v = (ImageView) tileView;
                         TileView currTile = new TileView(getBoardModel().getTile(i, j), v);
-                        currTile.draw(getContext());
+                        //currTile.draw(getContext());
                     }
                 }
             }

@@ -382,6 +382,9 @@ public class Tile
             case STAR:
                 resIDStr += "star_";
                 break;
+            case HELP:
+                resIDStr = "help_";
+                break;
             default:
                 break;
         }

@@ -3,6 +3,15 @@ package austinfouch.com.ishido;
 // TODO: DOC
 public class Computer extends Player
 {
+    public Computer()
+    {
+        super();
+    }
+
+    public Computer(String a_name, Integer a_score)
+    {
+        super(a_name, a_score);
+    }
 
     public Turn play(Tile currTile, Board gameBoard)
     {
