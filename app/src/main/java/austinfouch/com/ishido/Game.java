@@ -88,37 +88,37 @@ public class Game
         this.m_context = a_context;
     }
 
-    public Integer calculateScore(Tile a_currTile, Board gameBoard, int rowIndex, int colIndex)
+    public Integer calculateScore(Tile a_currTile, Board a_board, int a_row, int a_col)
     {
         Integer value = 0;
         // check tile match left
-        if( colIndex != 0)
+        if( a_col != 0)
         {
-            if( a_currTile.isMatch(gameBoard.getTile(rowIndex, colIndex)))
+            if( a_currTile.isMatch(a_board.getTile(a_row, a_col - 1)))
             {
                 value++;
             }
         }
         // check tile match right
-        if( colIndex != IshidoConstants.NUM_BOARD_COLS - 1)
+        if( a_col != IshidoConstants.NUM_BOARD_COLS - 1)
         {
-            if( a_currTile.isMatch(gameBoard.getTile(rowIndex, colIndex)))
+            if( a_currTile.isMatch(a_board.getTile(a_row, a_col + 1)))
             {
                 value++;
             }
         }
         // check tile match above
-        if( rowIndex != 0)
+        if( a_row != 0)
         {
-            if( a_currTile.isMatch(gameBoard.getTile(rowIndex, colIndex)))
+            if( a_currTile.isMatch(a_board.getTile(a_row - 1, a_col)))
             {
                 value++;
             }
         }
         // check tile match below
-        if( colIndex != IshidoConstants.NUM_BOARD_ROWS - 1)
+        if( a_row != IshidoConstants.NUM_BOARD_ROWS - 1)
         {
-            if( a_currTile.isMatch(gameBoard.getTile(rowIndex, colIndex)))
+            if( a_currTile.isMatch(a_board.getTile(a_row + 1, a_col)))
             {
                 value++;
             }

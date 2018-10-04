@@ -167,6 +167,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         getGame().getPlayerTwo().setScore(0);
         drawPlayers(getGame(), getPlayer1NameLayout(), getPlayer1ScoreLayout(),
                 getPlayer2NameLayout(), getPlayer2ScoreLayout());
+
+        // TODO: check if currTile can be played anywhere for more than 0 points, if not, end game.
     }
 
     public void drawPlayers(Game a_game, TextView a_player1NameView, TextView a_player1ScoreView,
@@ -286,9 +288,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(final View v) {
-        //
-
-        // grab currentTile and make sure the onclick doesnt trigger for it
+        // get currentTile and make sure the onClick doesn't trigger for it
         ImageView currTileView = (ImageView) findViewById(R.id.currentTileView);
         final int confirmTileId = this.getResources().getIdentifier("confirm_tile.png", "drawable", this.getPackageName());
         int currTileId = currTileView.getId();
@@ -303,21 +303,33 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // draw current tile on board
-                            drawTile(m_game.getCurrTile(), (ImageView) v);
 
                             int row = (int) v.getTag(R.string.row);
                             int col = (int) v.getTag(R.string.col);
-                            // set tile in board model, current tile to deck.top(), pop deck
-                            m_game.getBoard().setTile(row, col, m_game.getCurrTile());
-                            m_game.setCurrTile(m_game.getDeck().top());
-                            m_game.getDeck().pop();
 
-                            // draw current tile, board, tile count, score
-                            drawTile(m_game.getCurrTile(), m_currTileLayout);
-                            drawBoard(m_game.getBoard(), m_boardLayout);
-                            drawTileCount(m_game.getDeck(), m_tileCountLayout);
-                            // TODO: check for legality of move, drawScore()
+                            Integer score = getGame().calculateScore(getGame().getCurrTile(), getGame().getBoard(), row, col);
+                            if (score > 0)
+                            {
+                                // draw current tile on board
+                                drawTile(getGame().getCurrTile(), (ImageView) v);
+                                // set tile in board model, current tile to deck.top(), pop deck
+                                getGame().getBoard().setTile(row, col, getGame().getCurrTile());
+                                getGame().setCurrTile(getGame().getDeck().top());
+                                getGame().getDeck().pop();
+                                getGame().getPlayerOne().setScore(getGame().getPlayerOne().getScore() + score);
+
+                                // draw current tile, board, tile count, score
+                                drawTile(getGame().getCurrTile(), getCurrTileLayout());
+                                drawBoard(getGame().getBoard(), getBoardLayout());
+                                drawTileCount(getGame().getDeck(), getTileCountLayout());
+                                drawPlayers(getGame(), getPlayer1NameLayout(), getPlayer1ScoreLayout(), getPlayer2NameLayout(), getPlayer2ScoreLayout());
+
+                                Toast.makeText(getApplicationContext(), "Match! Your score increased by " + score.toString() + ".", Toast.LENGTH_SHORT).show();
+                                // TODO: drawScore()
+                            } else {
+                                // TODO: if not legal, make another alert dialog that says, "illegal move, or 0 point move"
+                                Toast.makeText(getApplicationContext(), "Illegal move! Tiles must be placed adjacent to at least one matching tile!", Toast.LENGTH_LONG).show();
+                            }
                             dialog.dismiss();
                         }
 
