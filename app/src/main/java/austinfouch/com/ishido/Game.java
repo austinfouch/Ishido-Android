@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Vector;
 
 // TODO: DOC
+// TODO: remove get/set for players, replace with get/set for playerOne and playerTwo
 public class Game
 {
     private Tile m_currTile;
@@ -20,7 +21,8 @@ public class Game
     private BoardView m_boardView;
     private ActivityLog m_log;
     private ActivityLogView m_logView;
-    private Vector<Player> m_players;
+    private Player m_playerOne;
+    private Player m_playerTwo;
     private ScoreBoard m_scoreBoard;
     private ScoreBoardView m_scoreBoardView;
     private Turn m_lastTurn;
@@ -35,7 +37,8 @@ public class Game
         this.m_deck = new Deck();
         this.m_board = new Board();
         this.m_log = new ActivityLog();
-        this.m_players = new Vector<Player>();
+        this.m_playerOne = new Human();
+        this.m_playerTwo = new Computer();
         this.m_scoreBoard = new ScoreBoard();
         this.m_lastTurn = new Turn();
         this.m_turnNum = 0;
@@ -51,7 +54,8 @@ public class Game
         this.m_boardView = null;
         this.m_log = new ActivityLog();
         this.m_logView = null;
-        this.m_players = new Vector<Player>();
+        this.m_playerOne = new Human();
+        this.m_playerTwo = new Computer();
         this.m_scoreBoard = new ScoreBoard();
         this.m_scoreBoardView = null;
         this.m_lastTurn = new Turn();
@@ -62,7 +66,7 @@ public class Game
 
     public Game(Tile a_currTile, TileView a_currTileView, Deck a_deck, Board a_board,
                 BoardView a_boardView, ActivityLog a_log, ActivityLogView a_logView,
-                Vector<Player> a_players, ScoreBoard a_scoreBoard, ScoreBoardView a_scoreBoardView,
+                Player a_playerOne, Player a_playerTwo, ScoreBoard a_scoreBoard, ScoreBoardView a_scoreBoardView,
                 Turn a_lastTurn, Integer a_turnNum, TileCountView a_tileCountView,
                 Integer a_tileCount, Context a_context)
     {
@@ -73,7 +77,8 @@ public class Game
         this.m_boardView = a_boardView;
         this.m_log = a_log;
         this.m_logView = a_logView;
-        this.m_players = a_players;
+        this.m_playerOne = a_playerOne;
+        this.m_playerTwo = a_playerTwo;
         this.m_scoreBoard = a_scoreBoard;
         this.m_scoreBoardView = a_scoreBoardView;
         this.m_lastTurn = a_lastTurn;
@@ -207,14 +212,24 @@ public class Game
         this.m_logView = a_logView;
     }
 
-    public Vector<Player> getPlayers()
+    public Player getPlayerOne()
     {
-        return m_players;
+        return this.m_playerOne;
     }
 
-    public void setPlayers(Vector<Player> a_players)
+    public void setPlayerOne(Player a_player)
     {
-        this.m_players = a_players;
+        this.m_playerOne = a_player;
+    }
+
+    public Player getPlayerTwo()
+    {
+        return this.m_playerTwo;
+    }
+
+    public void setPlayerTwo(Player a_player)
+    {
+        this.m_playerTwo = a_player;
     }
 
     public ScoreBoard getScoreBoard()
@@ -262,19 +277,8 @@ public class Game
         return this.m_context;
     }
 
-    public void setup(TableLayout a_boardLayout, TextView a_player1_name, TextView a_player1_score,
-                      TextView a_player2_name, TextView a_player2_score, ImageView a_currTileLayout,
-                      TextView a_tileCountLayout)
+    public void setup()
     {
-        // view initializations
-        /*
-        setBoardView(new BoardView(getBoard(), a_boardLayout, getContext()));
-        setCurrTileView(new TileView(getCurrTile(), a_currTileLayout));
-        setTileCountView(new TileCountView(getDeck().getTiles().size(), a_tileCountLayout));
-        setScoreBoardView(new ScoreBoardView(getScoreBoard(), a_player1_name, a_player1_score,
-                a_player2_name, a_player2_score));
-        */
-
         // Initialize deck
         // setupTiles are the 6 tiles that start on the Ishido board
         setDeck(new Deck());
@@ -303,11 +307,6 @@ public class Game
         getCurrTile().setColor(getDeck().top().getColor());
         getCurrTile().setSymbol(getDeck().top().getSymbol());
         getDeck().pop();
-
-        // Initialize scores
-        setPlayers(new Vector<Player>());
-        getPlayers().add(new Human("Austin", 0));
-        getPlayers().add(new Computer("Hal", 0));
 
         // Initialize Activity Log
         setLog(new ActivityLog());

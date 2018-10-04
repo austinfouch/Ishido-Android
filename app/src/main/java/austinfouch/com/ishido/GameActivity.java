@@ -2,6 +2,7 @@ package austinfouch.com.ishido;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -32,6 +33,95 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private TextView m_player2NameLayout;
     private TextView m_player2ScoreLayout;
 
+    public Game getGame()
+    {
+        return m_game;
+    }
+
+    public void setGame(Game a_game) {
+        this.m_game = a_game;
+    }
+
+    public TableLayout getBoardLayout()
+    {
+        return m_boardLayout;
+    }
+
+    public void setBoardLayout(TableLayout a_boardLayout)
+    {
+        this.m_boardLayout = a_boardLayout;
+    }
+
+    public LinearLayout getScoreBoardLayout()
+    {
+        return m_scoreBoardLayout;
+    }
+
+    public void setScoreBoardLayout(LinearLayout a_scoreBoardLayout)
+    {
+        this.m_scoreBoardLayout = a_scoreBoardLayout;
+    }
+
+    public ImageView getCurrTileLayout()
+    {
+        return m_currTileLayout;
+    }
+
+    public void setCurrTileLayout(ImageView a_currTileLayout)
+    {
+        this.m_currTileLayout = a_currTileLayout;
+    }
+
+    public TextView getTileCountLayout()
+    {
+        return m_tileCountLayout;
+    }
+
+    public void setTileCountLayout(TextView a_tileCountLayout)
+    {
+        this.m_tileCountLayout = a_tileCountLayout;
+    }
+
+    public TextView getPlayer1NameLayout()
+    {
+        return m_player1NameLayout;
+    }
+
+    public void setPlayer1NameLayout(TextView a_player1NameLayout)
+    {
+        this.m_player1NameLayout = a_player1NameLayout;
+    }
+
+    public TextView getPlayer1ScoreLayout()
+    {
+        return m_player1ScoreLayout;
+    }
+
+    public void setPlayer1ScoreLayout(TextView a_player1ScoreLayout)
+    {
+        this.m_player1ScoreLayout = a_player1ScoreLayout;
+    }
+
+    public TextView getPlayer2NameLayout()
+    {
+        return m_player2NameLayout;
+    }
+
+    public void setPlayer2NameLayout(TextView a_player2NameLayout)
+    {
+        this.m_player2NameLayout = a_player2NameLayout;
+    }
+
+    public TextView getPlayer2ScoreLayout()
+    {
+        return m_player2ScoreLayout;
+    }
+
+    public void setPlayer2ScoreLayout(TextView a_player2ScoreLayout)
+    {
+        this.m_player2ScoreLayout = a_player2ScoreLayout;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -42,35 +132,51 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().hide();
 
         // initialize layouts
-        m_boardLayout = (TableLayout) findViewById(R.id.boardLayout);
-        m_scoreBoardLayout = (LinearLayout) findViewById(R.id.scoreLayout);
-        m_currTileLayout = (ImageView) findViewById(R.id.currentTileView);
-        m_tileCountLayout = (TextView) findViewById(R.id.tileCountView);
-        m_player1NameLayout = (TextView) findViewById(R.id.playerLabel);
-        m_player1ScoreLayout = (TextView) findViewById(R.id.scoreView);
-        m_player2NameLayout = (TextView) findViewById(R.id.playerLabel2);
-        m_player2ScoreLayout = (TextView) findViewById(R.id.scoreView2);
+        setBoardLayout((TableLayout) findViewById(R.id.boardLayout));
+        setScoreBoardLayout((LinearLayout) findViewById(R.id.scoreLayout));
+        setCurrTileLayout((ImageView) findViewById(R.id.currentTileView));
+        setTileCountLayout((TextView) findViewById(R.id.tileCountView));
+        setPlayer1NameLayout((TextView) findViewById(R.id.playerLabel));
+        setPlayer1ScoreLayout((TextView) findViewById(R.id.scoreView));
+        setPlayer2NameLayout((TextView) findViewById(R.id.playerLabel2));
+        setPlayer2ScoreLayout((TextView) findViewById(R.id.scoreView2));
 
         // create new game
-        this.m_game = new Game();
-        this.m_game.setup(m_boardLayout, m_player1NameLayout, m_player1ScoreLayout, m_player2NameLayout,
-                m_player2ScoreLayout, m_currTileLayout, m_tileCountLayout);
+        setGame(new Game());
+        getGame().setup();
 
         // TODO: HELP, QUIT listeners
 
         // establish row tags, column tags, and onclick listeners for every tileView
-        setupBoardListeners(m_boardLayout);
+        setupBoardListeners(getBoardLayout());
 
         // TODO: multiple white tiles are showing up when drawing board....
         // draw current tile, board, and tile count
-        drawTile(this.m_game.getCurrTile(), m_currTileLayout);
-        drawBoard(this.m_game.getBoard(), m_boardLayout);
-        this.m_game.getDeck().pop();
-        drawTileCount(this.m_game.getDeck(), m_tileCountLayout);
+        drawTile(getGame().getCurrTile(), getCurrTileLayout());
+        drawBoard(getGame().getBoard(), getBoardLayout());
+        getGame().getDeck().pop();
+        drawTileCount(getGame().getDeck(), getTileCountLayout());
 
-        // TODO: add to onclick --> try and place current tile. this will be working solitaire.
+        // TODO: initialize players
+        // TODO: set playerOneName to intent.getExtra("playerName")
+        Intent intent = getIntent();
+        //getGame().getPlayerOne().setName(intent.getStringExtra("playerName"));
+        getGame().getPlayerOne().setName("GRTA");
+        getGame().getPlayerOne().setScore(0);
+        getGame().getPlayerTwo().setName("HAL9000");
+        getGame().getPlayerTwo().setScore(0);
+        drawPlayers(getGame(), getPlayer1NameLayout(), getPlayer1ScoreLayout(),
+                getPlayer2NameLayout(), getPlayer2ScoreLayout());
     }
 
+    public void drawPlayers(Game a_game, TextView a_player1NameView, TextView a_player1ScoreView,
+                            TextView a_player2NameView, TextView a_player2ScoreView)
+    {
+        a_player1NameView.setText(a_game.getPlayerOne().getName());
+        a_player1ScoreView.setText(a_game.getPlayerOne().getScore().toString());
+        a_player2NameView.setText(a_game.getPlayerTwo().getName());
+        a_player2ScoreView.setText(a_game.getPlayerTwo().getScore().toString());
+    }
     public void drawTile(Tile a_currTile, ImageView a_currTileView)
     {
         Resources resources = this.getResources();
@@ -211,7 +317,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                             drawTile(m_game.getCurrTile(), m_currTileLayout);
                             drawBoard(m_game.getBoard(), m_boardLayout);
                             drawTileCount(m_game.getDeck(), m_tileCountLayout);
-                            // TODO: drawScore()
+                            // TODO: check for legality of move, drawScore()
                             dialog.dismiss();
                         }
 
