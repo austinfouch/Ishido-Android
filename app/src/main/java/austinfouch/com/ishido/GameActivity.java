@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -286,19 +287,47 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public boolean checkExitConditions()
+    {
+        if(getGame().getDeck().getTiles().size() < 1)
+        {
+            return true;
+        }
+
+        int bestScore = 0;
+        for(int row = 0; row < IshidoConstants.NUM_BOARD_ROWS; row++)
+        {
+            for(int col = 0; col < IshidoConstants.NUM_BOARD_COLS; col++)
+            {
+                int tempScore = getGame().calculateScore(getGame().getCurrTile(), getGame().getBoard(), row, col);
+                if (tempScore > bestScore)
+                {
+                    bestScore = tempScore;
+                }
+            }
+        }
+
+        if (bestScore == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public void onClick(final View v) {
         // get currentTile and make sure the onClick doesn't trigger for it
-        ImageView currTileView = (ImageView) findViewById(R.id.currentTileView);
-        final int confirmTileId = this.getResources().getIdentifier("confirm_tile.png", "drawable", this.getPackageName());
+        final ImageView currTileView = (ImageView) findViewById(R.id.currentTileView);
+        //final int confirmTileId = this.getResources().getIdentifier("confirm_tile.png", "drawable", this.getPackageName());
         int currTileId = currTileView.getId();
         if(v instanceof ImageView && v.getId() != currTileId) // is ImageView, but not currentTileView
         {
             // build alert dialog, telling user of the tile position clicked
-            new AlertDialog.Builder(this)
+            AlertDialog.Builder builder = new  AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Confirming Tile Placement")
-                    .setMessage("row:" + v.getTag(R.string.row).toString() + " col:" + v.getTag(R.string.col).toString() )
+                    .setTitle("")
+                    .setMessage("Place tile here?\n\nrow : " + ((int) v.getTag(R.string.row) + 1) + "\ncol  : " + ((int) v.getTag(R.string.col) + 1) )
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                     {
                         @Override
@@ -306,36 +335,60 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                             int row = (int) v.getTag(R.string.row);
                             int col = (int) v.getTag(R.string.col);
-
                             Integer score = getGame().calculateScore(getGame().getCurrTile(), getGame().getBoard(), row, col);
                             if (score > 0)
                             {
-                                // draw current tile on board
+                                // TODO: check deck size before setting current tile and popping...this tile may be the last one! This shit below didnt work
+                                if(checkExitConditions())
+                                {
+                                    String exitStr = "Game over! ";
+                                    if(getGame().getPlayerOne().getScore() > getGame().getPlayerTwo().getScore())
+                                    {
+                                        exitStr += getGame().getPlayerOne().getName() + " won with a score of " + getGame().getPlayerOne().getScore();
+                                    } else {
+                                        exitStr += getGame().getPlayerTwo().getName() + " won with a score of " + getGame().getPlayerTwo().getScore();
+                                    }
+                                    Toast.makeText(getApplicationContext(), exitStr, Toast.LENGTH_LONG).show();
+
+                                    finish();
+                                }
+                                // draw tile being played on ImageView that was clicked
                                 drawTile(getGame().getCurrTile(), (ImageView) v);
-                                // set tile in board model, current tile to deck.top(), pop deck
+
+                                // set tile in board model, set current tile to deck.top(), then pop deck
                                 getGame().getBoard().setTile(row, col, getGame().getCurrTile());
                                 getGame().setCurrTile(getGame().getDeck().top());
                                 getGame().getDeck().pop();
                                 getGame().getPlayerOne().setScore(getGame().getPlayerOne().getScore() + score);
 
-                                // draw current tile, board, tile count, score
+                                // draw current tile, draw board, draw tile count, draw score(s)
                                 drawTile(getGame().getCurrTile(), getCurrTileLayout());
                                 drawBoard(getGame().getBoard(), getBoardLayout());
                                 drawTileCount(getGame().getDeck(), getTileCountLayout());
                                 drawPlayers(getGame(), getPlayer1NameLayout(), getPlayer1ScoreLayout(), getPlayer2NameLayout(), getPlayer2ScoreLayout());
 
+                                // quick msg to tell user of points gained
                                 Toast.makeText(getApplicationContext(), "Match! Your score increased by " + score.toString() + ".", Toast.LENGTH_SHORT).show();
-                                // TODO: drawScore()
                             } else {
-                                // TODO: if not legal, make another alert dialog that says, "illegal move, or 0 point move"
+                                // illegal move, do nothing but tell user
                                 Toast.makeText(getApplicationContext(), "Illegal move! Tiles must be placed adjacent to at least one matching tile!", Toast.LENGTH_LONG).show();
                             }
                             dialog.dismiss();
                         }
 
                     })
-                    .setNegativeButton("No", null)
-                    .show();
+                    .setNegativeButton("No", null);
+                    //.show();
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+            lp.copyFrom(alertDialog.getWindow().getAttributes());
+            lp.width = 450;
+            lp.height = 750;
+            lp.x=720;
+            lp.y=600;
+            alertDialog.getWindow().setAttributes(lp);
         }
     }
 }

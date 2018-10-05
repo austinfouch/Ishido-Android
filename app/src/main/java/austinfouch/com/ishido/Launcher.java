@@ -34,6 +34,7 @@ public class Launcher extends AppCompatActivity
     public void PlaySolitaire(View view)
     {
         Intent intent = new Intent(this, GameActivity.class);
+        /*
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Title");
 
@@ -58,6 +59,7 @@ public class Launcher extends AppCompatActivity
         });
 
         builder.show();
+        */
         intent.putExtra("playerName", m_playerName);
         startActivity(intent);
     }
