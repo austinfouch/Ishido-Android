@@ -15,21 +15,11 @@ import java.util.Vector;
 public class Game
 {
     private Tile m_currTile;
-    private TileView m_currTileView;
     private Deck m_deck;
     private Board m_board;
-    private BoardView m_boardView;
     private ActivityLog m_log;
-    private ActivityLogView m_logView;
     private Player m_playerOne;
     private Player m_playerTwo;
-    private ScoreBoard m_scoreBoard;
-    private ScoreBoardView m_scoreBoardView;
-    private Turn m_lastTurn;
-    private Integer m_turnNum;
-    private TileCountView m_tileCountView;
-    private Integer m_tileCount;
-    private Context m_context;
 
     public Game()
     {
@@ -39,53 +29,17 @@ public class Game
         this.m_log = new ActivityLog();
         this.m_playerOne = new Human();
         this.m_playerTwo = new Computer();
-        this.m_scoreBoard = new ScoreBoard();
-        this.m_lastTurn = new Turn();
-        this.m_turnNum = 0;
-        this.m_tileCount = IshidoConstants.DECK_SIZE;
     }
 
-    public Game(Context a_context)
-    {
-        this.m_currTile = new Tile();
-        this.m_currTileView = null;
-        this.m_deck = new Deck();
-        this.m_board = new Board();
-        this.m_boardView = null;
-        this.m_log = new ActivityLog();
-        this.m_logView = null;
-        this.m_playerOne = new Human();
-        this.m_playerTwo = new Computer();
-        this.m_scoreBoard = new ScoreBoard();
-        this.m_scoreBoardView = null;
-        this.m_lastTurn = new Turn();
-        this.m_turnNum = 0;
-        this.m_tileCountView = null;
-        this.m_tileCount = IshidoConstants.DECK_SIZE;
-    }
-
-    public Game(Tile a_currTile, TileView a_currTileView, Deck a_deck, Board a_board,
-                BoardView a_boardView, ActivityLog a_log, ActivityLogView a_logView,
-                Player a_playerOne, Player a_playerTwo, ScoreBoard a_scoreBoard, ScoreBoardView a_scoreBoardView,
-                Turn a_lastTurn, Integer a_turnNum, TileCountView a_tileCountView,
-                Integer a_tileCount, Context a_context)
+    public Game(Tile a_currTile, Deck a_deck, Board a_board, ActivityLog a_log, Player a_playerOne,
+                Player a_playerTwo)
     {
         this.m_currTile = a_currTile;
-        this.m_currTileView = a_currTileView;
         this.m_deck = a_deck;
         this.m_board = a_board;
-        this.m_boardView = a_boardView;
         this.m_log = a_log;
-        this.m_logView = a_logView;
         this.m_playerOne = a_playerOne;
         this.m_playerTwo = a_playerTwo;
-        this.m_scoreBoard = a_scoreBoard;
-        this.m_scoreBoardView = a_scoreBoardView;
-        this.m_lastTurn = a_lastTurn;
-        this.m_turnNum = a_turnNum;
-        this.m_tileCountView = a_tileCountView;
-        this.m_tileCount = a_tileCount;
-        this.m_context = a_context;
     }
 
     public Integer calculateScore(Tile a_currTile, Board a_board, int a_row, int a_col)
@@ -132,16 +86,6 @@ public class Game
         return value;
     }
 
-    public Integer getTurnNum()
-    {
-        return this.m_turnNum;
-    }
-
-    public void setTurnNum(Integer a_turnNum)
-    {
-        this.m_turnNum = a_turnNum;
-    }
-
     public Tile getCurrTile()
     {
         return m_currTile;
@@ -150,16 +94,6 @@ public class Game
     public void setCurrTile(Tile a_currTile)
     {
         this.m_currTile = a_currTile;
-    }
-
-    public TileView getCurrTileView()
-    {
-        return m_currTileView;
-    }
-
-    public void setCurrTileView(TileView a_currTileView)
-    {
-        this.m_currTileView = a_currTileView;
     }
 
     public Deck getDeck()
@@ -182,16 +116,6 @@ public class Game
         this.m_board = a_board;
     }
 
-    public BoardView getBoardView()
-    {
-        return m_boardView;
-    }
-
-    public void setBoardView(BoardView a_boardView)
-    {
-        this.m_boardView = a_boardView;
-    }
-
     public ActivityLog getLog()
     {
         return m_log;
@@ -200,16 +124,6 @@ public class Game
     public void setLog(ActivityLog a_log)
     {
         this.m_log = a_log;
-    }
-
-    public ActivityLogView getLogView()
-    {
-        return m_logView;
-    }
-
-    public void setLogView(ActivityLogView a_logView)
-    {
-        this.m_logView = a_logView;
     }
 
     public Player getPlayerOne()
@@ -230,51 +144,6 @@ public class Game
     public void setPlayerTwo(Player a_player)
     {
         this.m_playerTwo = a_player;
-    }
-
-    public ScoreBoard getScoreBoard()
-    {
-        return m_scoreBoard;
-    }
-
-    public ScoreBoardView getScoreBoardView()
-    {
-        return m_scoreBoardView;
-    }
-
-    public void setScoreBoardView(ScoreBoardView a_scoreBoardView)
-    {
-        this.m_scoreBoardView = a_scoreBoardView;
-    }
-
-    public TileCountView getTileCountView()
-    {
-        return m_tileCountView;
-    }
-
-    public void setTileCountView(TileCountView a_tileCountView)
-    {
-        this.m_tileCountView = a_tileCountView;
-    }
-
-    public Turn getLastTurn()
-    {
-        return m_lastTurn;
-    }
-
-    public void setLastTurn(Turn a_lastTurn)
-    {
-        this.m_lastTurn = a_lastTurn;
-    }
-
-    public void setContext(Context a_context)
-    {
-        this.m_context = a_context;
-    }
-
-    public Context getContext()
-    {
-        return this.m_context;
     }
 
     public void setup()
@@ -310,6 +179,6 @@ public class Game
 
         // Initialize Activity Log
         setLog(new ActivityLog());
-        getLog().addActivity("The Game has begun!");
+        getLog().setPlayerOneTurn("The Game has begun!");
     }
 }

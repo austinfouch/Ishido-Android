@@ -33,6 +33,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private TextView m_player1ScoreLayout;
     private TextView m_player2NameLayout;
     private TextView m_player2ScoreLayout;
+    private Boolean m_solitaireFlag;
 
     public Game getGame()
     {
@@ -146,30 +147,37 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setGame(new Game());
         getGame().setup();
 
-        // TODO: HELP, QUIT listeners
+        // TODO: QUIT listeners
 
         // establish row tags, column tags, and onclick listeners for every tileView
         setupBoardListeners(getBoardLayout());
 
-        // TODO: multiple white tiles are showing up when drawing board....
         // draw current tile, board, and tile count
         drawTile(getGame().getCurrTile(), getCurrTileLayout());
         drawBoard(getGame().getBoard(), getBoardLayout());
         getGame().getDeck().pop();
         drawTileCount(getGame().getDeck(), getTileCountLayout());
 
-        // TODO: initialize players
-        // TODO: set playerOneName to intent.getExtra("playerName")
+        // get intent, set user name
         Intent intent = getIntent();
-        //getGame().getPlayerOne().setName(intent.getStringExtra("playerName"));
-        getGame().getPlayerOne().setName("GRTA");
+        getGame().getPlayerOne().setName(intent.getStringExtra("playerName"));
         getGame().getPlayerOne().setScore(0);
-        getGame().getPlayerTwo().setName("HAL9000");
-        getGame().getPlayerTwo().setScore(0);
+        String temp = intent.getStringExtra("solitaireFlag");
+        if(temp.equals("false"))
+        {
+            m_solitaireFlag = false;
+        } else {
+            m_solitaireFlag = true;
+        }
+
+        if(m_solitaireFlag == false)
+        {
+            getGame().getPlayerTwo().setName("HAL9000");
+            getGame().getPlayerTwo().setScore(0);
+        }
+
         drawPlayers(getGame(), getPlayer1NameLayout(), getPlayer1ScoreLayout(),
                 getPlayer2NameLayout(), getPlayer2ScoreLayout());
-
-        // TODO: check if currTile can be played anywhere for more than 0 points, if not, end game.
     }
 
     public void drawPlayers(Game a_game, TextView a_player1NameView, TextView a_player1ScoreView,
@@ -177,8 +185,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     {
         a_player1NameView.setText(a_game.getPlayerOne().getName());
         a_player1ScoreView.setText(a_game.getPlayerOne().getScore().toString());
-        a_player2NameView.setText(a_game.getPlayerTwo().getName());
-        a_player2ScoreView.setText(a_game.getPlayerTwo().getScore().toString());
+        if(m_solitaireFlag == false)
+        {
+            a_player2NameView.setText(a_game.getPlayerTwo().getName());
+            a_player2ScoreView.setText(a_game.getPlayerTwo().getScore().toString());
+        }
     }
     public void drawTile(Tile a_currTile, ImageView a_currTileView)
     {
@@ -233,36 +244,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void drawHelp(Game a_game, TableLayout a_boardLayout)
-    {
-        Vector<Integer> rows = new Vector<>();
-        Vector<Integer> cols = new Vector<>();
-        int currValue = 0;
-
-        // loop over rows then cols, assessing value of placing the current tile at every position
-        for (int row = 0; row < IshidoConstants.NUM_BOARD_ROWS; row++)
-        {
-            for (int col = 0; col < IshidoConstants.NUM_BOARD_COLS; col++)
-            {
-                // calculate the score of current tile at the current positions, if it > 0, add to help
-                currValue = a_game.calculateScore(a_game.getCurrTile(), a_game.getBoard(), row, col);
-                if( currValue > 0)
-                {
-                    rows.add(row);
-                    cols.add(col);
-                }
-            }
-        }
-
-        // loop over rows & cols which hold positions of tiles to be marked as help
-        for (int i = 0; i < rows.size(); i++)
-        {
-            View boardRow = a_boardLayout.getChildAt(rows.get(i));
-            View tileView = ((TableRow) boardRow).getChildAt(cols.get(i));
-            drawTile(new Tile(IshidoColor.HELP, IshidoSymbol.HELP), (ImageView) tileView);
-        }
-    }
-
     public void setupBoardListeners(TableLayout a_boardLayout)
     {
         // loop over children (TableRow) of a_boardView (TableLayout)
@@ -287,34 +268,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public boolean checkExitConditions()
-    {
-        if(getGame().getDeck().getTiles().size() < 1)
-        {
-            return true;
-        }
-
-        int bestScore = 0;
-        for(int row = 0; row < IshidoConstants.NUM_BOARD_ROWS; row++)
-        {
-            for(int col = 0; col < IshidoConstants.NUM_BOARD_COLS; col++)
-            {
-                int tempScore = getGame().calculateScore(getGame().getCurrTile(), getGame().getBoard(), row, col);
-                if (tempScore > bestScore)
-                {
-                    bestScore = tempScore;
-                }
-            }
-        }
-
-        if (bestScore == 0)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     @Override
     public void onClick(final View v) {
         // get currentTile and make sure the onClick doesn't trigger for it
@@ -332,34 +285,39 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            // TODO: after a user finishes their turn, update their part of the activity log with their turn
+                            // TODO: switch the Toast for announcing winner to AlertDialog
+                            // TODO: switch score variable when showing HAL winning
+                            Intent intent = getIntent();
                             int row = (int) v.getTag(R.string.row);
                             int col = (int) v.getTag(R.string.col);
                             Integer score = getGame().calculateScore(getGame().getCurrTile(), getGame().getBoard(), row, col);
-                            if (score > 0)
+                            if (score > 0) // legal move
                             {
-                                // TODO: check deck size before setting current tile and popping...this tile may be the last one! This shit below didnt work
-                                if(checkExitConditions())
-                                {
-                                    String exitStr = "Game over! ";
-                                    if(getGame().getPlayerOne().getScore() > getGame().getPlayerTwo().getScore())
-                                    {
-                                        exitStr += getGame().getPlayerOne().getName() + " won with a score of " + getGame().getPlayerOne().getScore();
-                                    } else {
-                                        exitStr += getGame().getPlayerTwo().getName() + " won with a score of " + getGame().getPlayerTwo().getScore();
-                                    }
-                                    Toast.makeText(getApplicationContext(), exitStr, Toast.LENGTH_LONG).show();
-
-                                    finish();
-                                }
                                 // draw tile being played on ImageView that was clicked
                                 drawTile(getGame().getCurrTile(), (ImageView) v);
 
                                 // set tile in board model, set current tile to deck.top(), then pop deck
                                 getGame().getBoard().setTile(row, col, getGame().getCurrTile());
-                                getGame().setCurrTile(getGame().getDeck().top());
-                                getGame().getDeck().pop();
                                 getGame().getPlayerOne().setScore(getGame().getPlayerOne().getScore() + score);
+                                try {
+                                    getGame().setCurrTile(getGame().getDeck().top());
+                                    getGame().getDeck().pop();
+                                } catch (ArrayIndexOutOfBoundsException e)
+                                {
+                                    dialog.dismiss();
+                                    String exitStr = "Game over! ";
+
+                                    if (getGame().getPlayerOne().getScore() > getGame().getPlayerTwo().getScore()) {
+                                        exitStr += getGame().getPlayerOne().getName() + " won with a score of " + getGame().getPlayerOne().getScore() + score;
+                                    } else {
+                                        exitStr += getGame().getPlayerTwo().getName() + " won with a score of " + getGame().getPlayerTwo().getScore() + score;
+                                    }
+
+                                    Toast.makeText(getApplicationContext(), exitStr, Toast.LENGTH_LONG + Toast.LENGTH_LONG).show();
+
+                                    finish();
+                                }
 
                                 // draw current tile, draw board, draw tile count, draw score(s)
                                 drawTile(getGame().getCurrTile(), getCurrTileLayout());
@@ -369,6 +327,52 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                                 // quick msg to tell user of points gained
                                 Toast.makeText(getApplicationContext(), "Match! Your score increased by " + score.toString() + ".", Toast.LENGTH_SHORT).show();
+
+                                //TODO: if standard, make the computer's move here
+                                // if a standard game, computer's turn
+                                if(m_solitaireFlag == false)
+                                {
+                                    Turn computerTurn = new Turn();
+                                    Computer computer = new Computer();
+
+                                    computerTurn = computer.play(getGame().getCurrTile(), getGame().getBoard());
+
+                                    // set tile in board model, set current tile to deck.top(), then pop deck
+                                    getGame().getBoard().setTile(computerTurn.getRowPlayed(),
+                                                                computerTurn.getColPlayed(),
+                                                                getGame().getCurrTile());
+                                    // TODO: catch error here and exit if deck is empty
+                                    getGame().getPlayerTwo().setScore(getGame().getPlayerTwo().getScore() + computerTurn.getPointsScored());
+                                    try {
+                                        getGame().setCurrTile(getGame().getDeck().top());
+                                        getGame().getDeck().pop();
+                                    } catch (ArrayIndexOutOfBoundsException e)
+                                    {
+                                        dialog.dismiss();
+                                        String exitStr = "Game over! ";
+
+                                        if (getGame().getPlayerOne().getScore() > getGame().getPlayerTwo().getScore()) {
+                                            exitStr += getGame().getPlayerOne().getName() + " won with a score of " + getGame().getPlayerOne().getScore() + score;
+                                        } else {
+                                            exitStr += getGame().getPlayerTwo().getName() + " won with a score of " + getGame().getPlayerTwo().getScore() + score;
+                                        }
+
+                                        Toast.makeText(getApplicationContext(), exitStr, Toast.LENGTH_LONG + Toast.LENGTH_LONG).show();
+
+                                        finish();
+                                    }
+
+                                    // draw current tile, draw board, draw tile count, draw score(s)
+                                    drawTile(getGame().getCurrTile(), getCurrTileLayout());
+                                    drawBoard(getGame().getBoard(), getBoardLayout());
+                                    drawTileCount(getGame().getDeck(), getTileCountLayout());
+                                    drawPlayers(getGame(), getPlayer1NameLayout(), getPlayer1ScoreLayout(), getPlayer2NameLayout(), getPlayer2ScoreLayout());
+
+                                    // quick msg to tell user of points gained
+                                    Toast.makeText(getApplicationContext(), "Match! HAL's score increased by "
+                                            + computerTurn.getPointsScored().toString()
+                                            + ".", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
                                 // illegal move, do nothing but tell user
                                 Toast.makeText(getApplicationContext(), "Illegal move! Tiles must be placed adjacent to at least one matching tile!", Toast.LENGTH_LONG).show();
@@ -378,17 +382,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                     })
                     .setNegativeButton("No", null);
-                    //.show();
+            // resize AlertDialog, place it below current tile
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
             lp.copyFrom(alertDialog.getWindow().getAttributes());
             lp.width = 450;
             lp.height = 750;
             lp.x=720;
             lp.y=600;
             alertDialog.getWindow().setAttributes(lp);
+
+            // TODO: check decksize and tile placement here?
         }
     }
 }

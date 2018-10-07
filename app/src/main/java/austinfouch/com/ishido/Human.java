@@ -3,7 +3,24 @@ package austinfouch.com.ishido;
 import java.util.List;
 import java.util.Vector;
 
-// TODO: DOC
+/**/
+/*
+    Human.java
+
+    AUTHOR
+
+        Austin Fouch
+
+    DESCRIPTION
+
+        Human class. Extends the Player class.
+
+    DATE
+
+        01/30/2018
+
+*/
+/**/
 public class Human extends Player
 {
     public Human()
@@ -11,21 +28,39 @@ public class Human extends Player
         super();
     }
 
+    /**/
+    /*
+    Human::Human()
+
+    NAME
+
+            Human::Human - constructor for the Board class.
+
+    SYNOPSIS
+
+            public Human::Human();
+
+    DESCRIPTION
+
+            This function will construct a Human object. This is done by calling the Player
+            constructor through the super() function.
+
+    RETURNS
+
+            No return value.
+
+    AUTHOR
+
+            Austin Fouch
+
+    DATE
+
+            1/30/2018
+
+    */
+    /**/
     public Human(String a_name, Integer a_score)
     {
         super(a_name, a_score);
-    }
-
-    public Turn play(Tile a_currTile, Board a_gameBoard, Integer a_rowIndex, Integer a_colIndex)
-    {
-        Turn turn  = new Turn();
-        Integer value = isLegalPlay(a_currTile, a_gameBoard, a_rowIndex, a_colIndex);
-
-        if (value > 0)
-        {
-            turn = new Turn(a_currTile, a_rowIndex, a_colIndex, getName(), value);
-        }
-
-        return turn;
     }
 }

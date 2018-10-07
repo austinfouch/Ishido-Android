@@ -282,7 +282,7 @@ public class Deck
 
     NAME
 
-            Deck::setup - removes the last element in m_tiles.
+            Deck::setup - initializes the deck for a game of Ishido.
 
     SYNOPSIS
 

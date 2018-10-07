@@ -834,8 +834,7 @@
                 android:id="@+id/tileCountView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="72" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -855,15 +854,13 @@
                     android:id="@+id/playerLabel"
                     android:layout_width="75dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Player1:" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/scoreView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="0" />
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -876,15 +873,13 @@
                     android:id="@+id/playerLabel2"
                     android:layout_width="75dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Player2:" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/scoreView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="0" />
+                    android:layout_weight="1" />
             </LinearLayout>
         </LinearLayout>
 
@@ -901,16 +896,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/testEntryView"
+                    android:id="@+id/player1Turn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="[Turn 2]: Player2's turn. " />
+                    android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/testEntryView4"
+                    android:id="@+id/player2Turn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="[Turn 2]: Player2 used a hint." />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
         </ScrollView>
@@ -923,13 +916,6 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/hintButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Hint" />
-
-            <Button
                 android:id="@+id/quitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -938,4 +924,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

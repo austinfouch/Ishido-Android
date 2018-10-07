@@ -25,6 +25,36 @@ public class Tile
     private IshidoColor m_color;
     private IshidoSymbol m_symbol;
 
+    /**/
+    /*
+    Tile::Tile()
+
+    NAME
+
+            Tile::Tile - constructor for the Tile class.
+
+    SYNOPSIS
+
+            public Tile::Tile();
+
+    DESCRIPTION
+
+            This function will construct a Tile object.
+
+    RETURNS
+
+            No return value.
+
+    AUTHOR
+
+            Austin Fouch
+
+    DATE
+
+            10:26pm 1/29/2018
+
+    */
+    /**/
     public Tile()
     {
     }
@@ -35,7 +65,7 @@ public class Tile
 
     NAME
 
-            Tile::Tile - constructor for the Tile class.
+            Tile::Tile - copy constructor for the Tile class.
 
     SYNOPSIS
 
