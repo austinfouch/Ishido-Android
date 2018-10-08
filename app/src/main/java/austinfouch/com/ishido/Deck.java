@@ -144,7 +144,7 @@ public class Deck
 
     NAME
 
-            Deck::setTiles - sett for the Deck class;s m_tiles member variable.
+            Deck::setTiles - setter for the m_tiles member variable.
 
     SYNOPSIS
 
