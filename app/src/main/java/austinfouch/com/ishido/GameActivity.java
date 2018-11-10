@@ -9,6 +9,7 @@ import android.media.Image;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -1095,11 +1096,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                                 } catch (ArrayIndexOutOfBoundsException e)
                                 {
                                     String exitStr = "Game over! ";
-
+                                    getGame().getPlayerOne().setScore(getGame().getPlayerOne().getScore() + (int) score);
                                     if (getGame().getPlayerOne().getScore() > getGame().getPlayerTwo().getScore()) {
-                                        exitStr += getGame().getPlayerOne().getName() + " won with a score of " + (getGame().getPlayerOne().getScore() + (int) score);
+                                        exitStr += getGame().getPlayerOne().getName() + " won with a score of " + (getGame().getPlayerOne().getScore());
                                     } else {
-                                        exitStr += getGame().getPlayerTwo().getName() + " won with a score of " + (getGame().getPlayerTwo().getScore() + (int) score);
+                                        exitStr += getGame().getPlayerTwo().getName() + " won with a score of " + (getGame().getPlayerTwo().getScore());
                                     }
 
                                     dialog.dismiss();
@@ -1114,13 +1115,28 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                                 // draw current tile, draw board, draw tile count, draw score(s)
                                 drawTile(getGame().getCurrTile(), getCurrTileLayout());
-                                drawBoard(getGame().getBoard(), getBoardLayout());
+                                //drawBoard(getGame().getBoard(), getBoardLayout());
                                 drawTileCount(getGame().getDeck(), getTileCountLayout());
                                 drawPlayers(getGame(), getPlayer1NameLayout(), getPlayer1ScoreLayout(), getPlayer2NameLayout(), getPlayer2ScoreLayout());
 
                                 // if a standard game, computer's turn
                                 if(m_solitaireFlag == false)
                                 {
+                                    int test  = getGame().getDeck().getTiles().size();
+                                    if(test == 0)
+                                    {
+                                        String exitStr = "Game over! ";
+
+                                        if (getGame().getPlayerOne().getScore() > getGame().getPlayerTwo().getScore()) {
+                                            exitStr += getGame().getPlayerOne().getName() + " won with a score of " + (getGame().getPlayerOne().getScore());
+                                        } else {
+                                            exitStr += getGame().getPlayerTwo().getName() + " won with a score of " + (getGame().getPlayerTwo().getScore());
+                                        }
+
+                                        dialog.dismiss();
+                                        gameOver(exitStr);
+                                    }
+
                                     Turn computerTurn = new Turn();
                                     Computer computer = new Computer();
 
@@ -1129,7 +1145,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                                     getGame().getBoard().setTile(computerTurn.getRowPlayed(),
                                                                 computerTurn.getColPlayed(),
                                                                 getGame().getCurrTile());
+                                    View rowPlayedView = getBoardLayout().getChildAt(computerTurn.getRowPlayed());
+                                    View tilePlayedView = ((TableRow) rowPlayedView).getChildAt(computerTurn.getColPlayed());
+                                    drawTile(getGame().getCurrTile(), (ImageView) tilePlayedView);
                                     getGame().getPlayerTwo().setScore(getGame().getPlayerTwo().getScore() + computerTurn.getPointsScored());
+
                                     try {
                                         getGame().setCurrTile(getGame().getDeck().top());
                                         getGame().getDeck().pop();
@@ -1149,7 +1169,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                                     // draw current tile, draw board, draw tile count, draw score(s)
                                     drawTile(getGame().getCurrTile(), getCurrTileLayout());
-                                    drawBoard(getGame().getBoard(), getBoardLayout());
+                                    //drawBoard(getGame().getBoard(), getBoardLayout());
                                     drawTileCount(getGame().getDeck(), getTileCountLayout());
                                     drawPlayers(getGame(), getPlayer1NameLayout(), getPlayer1ScoreLayout(), getPlayer2NameLayout(), getPlayer2ScoreLayout());
 
@@ -1235,6 +1255,38 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.show();
     }
 
+    /**/
+    /*
+    GameActivity::gameOver()
+
+    NAME
+
+            GameActivity::gameOver - displays the winner and their score, exits the Game Activity.
+
+    SYNOPSIS
+
+            public void GameActivity::gameOver();
+
+    DESCRIPTION
+
+            This function will display an AlertDialog object to the screen, detailing the winner
+            of the game and their score. The function then exits the Game Activity, returning to
+            the Launcher Activity.
+
+    RETURNS
+
+            Void.
+
+    AUTHOR
+
+            Austin Fouch
+
+    DATE
+
+            1/30/2018
+
+    */
+    /**/
     public void gameOver(String a_exitStr)
     {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();

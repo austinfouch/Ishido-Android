@@ -4,7 +4,7 @@ import java.util.Vector;
 
 /**/
 /*
-    Activity.java
+    ActivityLog.java
 
     AUTHOR
 
